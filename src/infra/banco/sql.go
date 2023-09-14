@@ -1,11 +1,11 @@
-package db
+package banco
 
 func ExexActionsDb() {
 	criaTableSprint()
 }
 
-func criaTableSprint() {
-	tabelaSprint := `
+func criaTableSprint() string {
+	return `
 		CREATE TABLE IF NOT EXISTS sprints
 		(
 			id bigserial NOT NULL,

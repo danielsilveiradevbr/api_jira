@@ -1,4 +1,4 @@
-package db
+package banco
 
 import (
 	"database/sql"
@@ -46,3 +46,9 @@ func connectToDB() (*sql.DB, error) {
 
 	return db, nil
 }
+
+// defer db.Close()
+
+// 	// Exemplo de consulta SELECT
+// rows, err := db.Query("SELECT nome, idade FROM usuarios")
+// defer rows.Close()
