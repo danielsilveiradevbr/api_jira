@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	_ "github.com/danielzinhors/api_jira/src/infra"
+	"github.com/danielzinhors/api_jira/src/infra/banco"
 )
 
 func main() {
@@ -11,12 +11,12 @@ func main() {
 }
 
 func PreparaDb() {
-	_, err := *banco.connectToDB()
+	db, err := banco.ConnectToDB()
 	if err != nil {
 		fmt.Println("Erro ao conectar ao banco de dados:", err)
 		return
 	}
-
+	err = banco.ExecSqls(db)
 	if err != nil {
 		fmt.Println("Erro ao executar a consulta:", err)
 		return

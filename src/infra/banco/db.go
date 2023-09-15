@@ -2,39 +2,44 @@ package banco
 
 import (
 	"database/sql"
-	"log"
+	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 type paramConexao struct {
+	host     string
 	username string
 	password string
 	porta    string
 	base     string
-	sslmode  string
 }
 
-func connectToDB() (*sql.DB, error) {
+func ConnectToDB() (*sql.DB, error) {
 	err := godotenv.Load()
 	if err != nil {
-		log.Printf("Some error occured. Err: %s", err)
-		panic(err)
+		return nil, err
 	}
 
 	paramConexao := paramConexao{
-		username: os.Getenv("USERNAME"),
-		password: os.Getenv("PASSWORD"),
+		host:     os.Getenv("HOST"),
 		porta:    os.Getenv("PORTA"),
+		username: os.Getenv("USERPOST"),
+		password: os.Getenv("PASSWORD"),
 		base:     os.Getenv("BASE"),
-		sslmode:  os.Getenv("SSLMODE"),
+	}
+	porta, err := strconv.Atoi(paramConexao.porta)
+	if err != nil {
+		return nil, err
 	}
 
-	dbConfig := "user=" + paramConexao.username + "dbname=" + paramConexao.base + "sslmode=" + paramConexao.sslmode
+	connectionString := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+		paramConexao.host, porta, paramConexao.username, paramConexao.password, paramConexao.base)
 
-	db, err := sql.Open("postgres", dbConfig)
+	db, err := sql.Open("postgres", connectionString)
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +52,21 @@ func connectToDB() (*sql.DB, error) {
 	return db, nil
 }
 
-// defer db.Close()
+func ExecSqls(db *sql.DB) error {
+	defer db.Close()
+	var sqls = ExexActionsDb()
 
-// 	// Exemplo de consulta SELECT
-// rows, err := db.Query("SELECT nome, idade FROM usuarios")
-// defer rows.Close()
+	for _, v := range sqls {
+		stmt, err := db.Prepare(v)
+		defer stmt.Close()
+		if err != nil {
+			return err
+		}
+		_, err = stmt.Exec()
+		// fmt.Println(v)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
