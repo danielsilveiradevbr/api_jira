@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Priority struct {
 	Self    string `json:"self"`

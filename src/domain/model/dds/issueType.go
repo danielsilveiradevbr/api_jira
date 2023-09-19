@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Issuetype struct {
 	Self        string `json:"self"`

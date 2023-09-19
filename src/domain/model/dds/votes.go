@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Votes struct {
 	Self     string `json:"self"`

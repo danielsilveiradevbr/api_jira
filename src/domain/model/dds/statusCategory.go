@@ -1,4 +1,4 @@
-package model
+package dds
 
 type StatusCategory struct {
 	Self      string `json:"self"`

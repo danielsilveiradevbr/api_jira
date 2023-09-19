@@ -1,4 +1,4 @@
-package model
+package dds
 
 type AvatarUrls struct {
 	Four8X48  string `json:"48x48"`

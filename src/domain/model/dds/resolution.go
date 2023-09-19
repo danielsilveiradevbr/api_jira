@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Resolution struct {
 	Self        string `json:"self"`

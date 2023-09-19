@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Customfield10342 struct {
 	Self     string `json:"self"`

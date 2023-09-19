@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Aggregateprogress struct {
 	Progress int `json:"progress"`

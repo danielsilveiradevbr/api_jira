@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Issues struct {
 	Expand string `json:"expand"`

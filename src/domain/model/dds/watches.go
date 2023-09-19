@@ -1,4 +1,4 @@
-package model
+package dds
 
 type Watches struct {
 	Self       string `json:"self"`
