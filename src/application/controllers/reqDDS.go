@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -10,45 +9,47 @@ import (
 	"encoding/base64"
 	"encoding/json"
 
-	"github.com/danielzinhors/api_jira/src/domain/model/dds"
+	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
 	"github.com/joho/godotenv"
 )
 
-func AtualizaDDS() error {
+func AtualizaDDS() (*dds.DDS, error) {
 	err := godotenv.Load()
 	if err != nil {
-		return err
+		return nil, err
 	}
+	client := http.Client{}
 	endpoint := os.Getenv("ENDPOINT_JIRA")
+
 	jsonVar := bytes.NewBuffer([]byte(`{"jql":"project = \"Desenvolvimento de Software\" AND Sprint = 75"}`))
 	auth := os.Getenv("USER_JIRA") + ":" + os.Getenv("PASS_JIRA")
-	base64Auth := base64.StdEncoding.EncodeToString([]byte(auth))
-	req, err := http.NewRequest("POST", endpoint, jsonVar)
-	if err != nil {
-		return err
-	}
 
+	base64Auth := base64.StdEncoding.EncodeToString([]byte(auth))
+	req, err := http.NewRequest("GET", endpoint, jsonVar)
+	if err != nil {
+		return nil, err
+	}
 	// Adicione o cabeçalho de autenticação básica
-	req.Header.Set("Authorization", "Basic "+base64Auth)
-	fmt.Println(base64Auth)
+	req.Header.Add("Authorization", "Basic "+base64Auth)
+
 	// Faça a solicitação HTTP
-	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	fmt.Println("passou")
+	// fmt.Println("Response status:", resp.Status)
 	defer resp.Body.Close()
-	res, err := io.ReadAll(req.Body)
+	res, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return err
-	}
-	var dds *dds.DDS
-	err = json.Unmarshal(res, &dds)
-	if err != nil {
-		return err
+		return nil, err
 	}
 
-	println(&dds.Total)
-	return nil
+	var jsondds *dds.DDS
+
+	err = json.Unmarshal(res, &jsondds)
+	if err != nil {
+		return nil, err
+	}
+
+	return jsondds, nil
 }

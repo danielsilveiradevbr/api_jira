@@ -1,13 +1,13 @@
 package banco
 
 import (
-	"database/sql"
 	"fmt"
 	"os"
 	"strconv"
 
 	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 type paramConexao struct {
@@ -18,7 +18,7 @@ type paramConexao struct {
 	base     string
 }
 
-func ConnectToDB() (*sql.DB, error) {
+func ConnectToPG() (*gorm.DB, error) {
 	err := godotenv.Load()
 	if err != nil {
 		return nil, err
@@ -39,34 +39,10 @@ func ConnectToDB() (*sql.DB, error) {
 	connectionString := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		paramConexao.host, porta, paramConexao.username, paramConexao.password, paramConexao.base)
 
-	db, err := sql.Open("postgres", connectionString)
-	if err != nil {
-		return nil, err
-	}
-
-	err = db.Ping()
+	db, err := gorm.Open(postgres.Open(connectionString), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
 
 	return db, nil
-}
-
-func ExecSqls(db *sql.DB) error {
-	defer db.Close()
-	var sqls = ExexActionsDb()
-
-	for _, v := range sqls {
-		stmt, err := db.Prepare(v)
-		defer stmt.Close()
-		if err != nil {
-			return err
-		}
-		_, err = stmt.Exec()
-		// fmt.Println(v)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
 }

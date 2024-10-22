@@ -3,32 +3,24 @@ package main
 import (
 	"fmt"
 
-	"github.com/danielzinhors/api_jira/src/application/controllers"
-	"github.com/danielzinhors/api_jira/src/infra/banco"
+	"github.com/danielsilveiradevbr/api_jira/src/application/controllers"
+	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
+	"gorm.io/gorm"
 )
 
 func main() {
-	PreparaDb()
-	AtualizaDDS()
-}
-
-func PreparaDb() {
-	db, err := banco.ConnectToDB()
+	db, err := b.ConnectToPG()
 	if err != nil {
 		fmt.Println("Erro ao conectar ao banco de dados:", err)
-		return
+		panic(err)
 	}
-	err = banco.ExecSqls(db)
-	if err != nil {
-		fmt.Println("Erro ao executar a consulta:", err)
-		return
-	}
-
+	AtualizaDDS(db)
 }
 
-func AtualizaDDS() {
-	err := controllers.AtualizaDDS()
+func AtualizaDDS(prCon *gorm.DB) {
+	jsondds, err := controllers.AtualizaDDS()
 	if err != nil {
 		panic(err)
 	}
+
 }
