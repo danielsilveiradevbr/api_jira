@@ -1,6 +1,6 @@
 package ddsDto
 
-type DDS struct {
+type JsonDDS struct {
 	Expand     string   `json:"expand"`
 	StartAt    int      `json:"startAt"`
 	MaxResults int      `json:"maxResults"`

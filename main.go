@@ -5,6 +5,7 @@ import (
 
 	"github.com/danielsilveiradevbr/api_jira/src/application/controllers"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
+	service "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	"gorm.io/gorm"
 )
 
@@ -18,9 +19,9 @@ func main() {
 }
 
 func AtualizaDDS(prCon *gorm.DB) {
-	jsondds, err := controllers.AtualizaDDS()
+	jsonJira, err := controllers.AtualizaDDS()
 	if err != nil {
 		panic(err)
 	}
-
+	service.SalvaDDS(prCon, jsonJira)
 }

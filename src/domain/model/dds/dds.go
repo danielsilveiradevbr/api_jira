@@ -6,7 +6,7 @@ import (
 
 type DDS struct {
 	ID                  uint64 `gorm:"primaryKey;autoIncrement:true"`
-	ID_JIRA             uint64
+	ID_JIRA             string
 	KEY_JIRA            string
 	DESCRICAO           string
 	DATA_CRIACAO        time.Time

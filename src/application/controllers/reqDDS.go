@@ -13,7 +13,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func AtualizaDDS() (*dds.DDS, error) {
+func AtualizaDDS() (*dds.JsonDDS, error) {
 	err := godotenv.Load()
 	if err != nil {
 		return nil, err
@@ -44,12 +44,12 @@ func AtualizaDDS() (*dds.DDS, error) {
 		return nil, err
 	}
 
-	var jsondds *dds.DDS
+	var jsonDDS *dds.JsonDDS
 
-	err = json.Unmarshal(res, &jsondds)
+	err = json.Unmarshal(res, &jsonDDS)
 	if err != nil {
 		return nil, err
 	}
 
-	return jsondds, nil
+	return jsonDDS, nil
 }
