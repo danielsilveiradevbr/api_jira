@@ -3,6 +3,7 @@ module github.com/danielsilveiradevbr/api_jira
 go 1.21.0
 
 require (
+	github.com/go-chi/chi/v5 v5.2.0
 	github.com/joho/godotenv v1.5.1
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.12

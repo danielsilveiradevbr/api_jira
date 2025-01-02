@@ -14,6 +14,7 @@ import (
 )
 
 func AtualizaDDS() (*dds.JsonDDS, error) {
+
 	err := godotenv.Load()
 	if err != nil {
 		return nil, err
