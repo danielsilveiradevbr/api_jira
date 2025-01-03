@@ -29,7 +29,13 @@ func RecebeDDS(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	service.SalvaDDS(jsonDDS)
+	// println(jsonDDS.)
+	err = service.SalvaDDS(jsonDDS)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte(err.Error()))
+		return
+	}
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Recebido com sucesso"))
 }

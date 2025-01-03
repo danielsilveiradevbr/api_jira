@@ -2,11 +2,11 @@ package controllers
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
 
-	"encoding/base64"
 	"encoding/json"
 
 	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
@@ -19,26 +19,33 @@ func AtualizaDDS() (*dds.JsonDDS, error) {
 	if err != nil {
 		return nil, err
 	}
-	client := http.Client{}
+	method := "POST"
 	endpoint := os.Getenv("ENDPOINT_JIRA")
+	if os.Getenv("DEBUGANDO") == "T" {
+		println(endpoint)
+	}
 
-	jsonVar := bytes.NewBuffer([]byte(`{"jql":"project = \"Desenvolvimento de Software\" AND Sprint = 75"}`))
-	auth := os.Getenv("USER_JIRA") + ":" + os.Getenv("PASS_JIRA")
+	body, _ := json.Marshal(map[string]string{
+		"jql": "project = \"Desenvolvimento de Software\" AND Sprint = 75",
+	})
 
-	base64Auth := base64.StdEncoding.EncodeToString([]byte(auth))
-	req, err := http.NewRequest("GET", endpoint, jsonVar)
+	payload := bytes.NewBuffer(body)
+
+	req, err := http.NewRequest(method, endpoint, payload)
 	if err != nil {
 		return nil, err
 	}
-	// Adicione o cabeçalho de autenticação básica
-	req.Header.Add("Authorization", "Basic "+base64Auth)
 
+	// Adicione o cabeçalho de autenticação básica
+	req.SetBasicAuth(os.Getenv("USER_JIRA"), os.Getenv("PASS_JIRA"))
+	req.Header.Set("Content-Type", "application/json")
 	// Faça a solicitação HTTP
+	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
-	// fmt.Println("Response status:", resp.Status)
+	fmt.Println("Response status:", resp.Status)
 	defer resp.Body.Close()
 	res, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -46,11 +53,15 @@ func AtualizaDDS() (*dds.JsonDDS, error) {
 	}
 
 	var jsonDDS *dds.JsonDDS
-
+	if os.Getenv("DEBUGANDO") == "T" {
+		println(string(res))
+	}
 	err = json.Unmarshal(res, &jsonDDS)
 	if err != nil {
 		return nil, err
 	}
-
+	if os.Getenv("DEBUGANDO") == "T" {
+		println(jsonDDS.Total)
+	}
 	return jsonDDS, nil
 }

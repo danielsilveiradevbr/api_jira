@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	project "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	sprint "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
 )
 
 type Sprint struct {
@@ -19,7 +19,7 @@ type Sprint struct {
 	DATA_UPDATE   time.Time
 }
 
-func NewSprint(sprintdto *project.Sprint) *Sprint {
+func NewSprint(sprintdto *sprint.Sprint) *Sprint {
 	sprint := strings.Split(sprintdto.NOME, ",")
 	println(sprint)
 	return &Sprint{}

@@ -24,6 +24,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		if err != nil {
 			return err
 		}
+		// err = sprint.SalvaSprint(db, &issue.Fields.Sprint)
+		// if err != nil {
+		// 	return err
+		// }
 	}
 	return nil
 }
