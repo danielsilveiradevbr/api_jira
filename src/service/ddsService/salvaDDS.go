@@ -6,6 +6,7 @@ import (
 	jsonDDS "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
 	"github.com/joho/godotenv"
 )
 
@@ -24,10 +25,11 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		if err != nil {
 			return err
 		}
-		// err = sprint.SalvaSprint(db, &issue.Fields.Sprint)
-		// if err != nil {
-		// 	return err
-		// }
+		err = sprint.SalvaSprint(db, issue.Fields.Sprint)
+		if err != nil {
+			return err
+		}
 	}
+
 	return nil
 }

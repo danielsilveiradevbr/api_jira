@@ -1,10 +1,10 @@
 package dds
 
 import (
-	"strings"
 	"time"
 
-	sprint "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	sprintdto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	utils "github.com/danielsilveiradevbr/api_jira/src/utils"
 )
 
 type Sprint struct {
@@ -19,8 +19,16 @@ type Sprint struct {
 	DATA_UPDATE   time.Time
 }
 
-func NewSprint(sprintdto *sprint.Sprint) *Sprint {
-	sprint := strings.Split(sprintdto.NOME, ",")
-	println(sprint)
-	return &Sprint{}
+func NewSprint(sprintdto *sprintdto.Sprint) *Sprint {
+
+	return &Sprint{
+		ID_JIRA:       sprintdto.ID_JIRA,
+		STATUS:        sprintdto.State,
+		NOME:          sprintdto.Name,
+		COMPLETE_DATE: sprintdto.CompleteDate,
+		START_DATE:    sprintdto.StartDate,
+		END_DATE:      sprintdto.EndDate,
+		DATA_CRIACAO:  utils.GetADateTimeSaoPaulo(),
+	}
+
 }

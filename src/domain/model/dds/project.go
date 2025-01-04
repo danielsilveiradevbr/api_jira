@@ -4,6 +4,7 @@ import (
 	"time"
 
 	project "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	utils "github.com/danielsilveiradevbr/api_jira/src/utils"
 )
 
 type Project struct {
@@ -16,11 +17,10 @@ type Project struct {
 }
 
 func NewProject(projetodto *project.Project) *Project {
-	loc, _ := time.LoadLocation("America/Sao_Paulo")
 	return &Project{
 		ID_JIRA:      projetodto.ID,
 		KEY_JIRA:     projetodto.Key,
 		DESCRICAO:    projetodto.Name,
-		DATA_CRIACAO: time.Now().In(loc),
+		DATA_CRIACAO: utils.GetADateTimeSaoPaulo(),
 	}
 }

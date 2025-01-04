@@ -36,13 +36,13 @@ func AtualizaDDS() {
 	for {
 		hora := u.GetADateTimeSaoPaulo()
 		fmt.Println(hora)
-		// if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
-		jsonJira, err := controllers.AtualizaDDS()
-		if err != nil {
-			panic(err)
+		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
+			jsonJira, err := controllers.AtualizaDDS()
+			if err != nil {
+				panic(err)
+			}
+			service.SalvaDDS(jsonJira)
 		}
-		service.SalvaDDS(jsonJira)
-		// }
 		time.Sleep(time.Minute)
 	}
 }
