@@ -49,8 +49,8 @@ type Fields struct {
 	// Customfield10712              any               `json:"customfield_10712"`
 	// Progress                      Progress          `json:"progress"`
 	// Votes                         Votes             `json:"votes"`
-	// Issuetype                     Issuetype         `json:"issuetype"`
-	Project Project `json:"project"`
+	Issuetype Issuetype `json:"issuetype"`
+	Project   Project   `json:"project"`
 	// Customfield11001              any               `json:"customfield_11001"`
 	// Customfield11002              any               `json:"customfield_11002"`
 	// Customfield13302              any               `json:"customfield_13302"`
