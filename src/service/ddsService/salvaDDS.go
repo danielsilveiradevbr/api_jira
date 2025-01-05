@@ -1,10 +1,9 @@
 package ddsservice
 
 import (
-	"fmt"
-
 	jsonDDS "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
@@ -18,20 +17,23 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 	}
 	db, err := b.ConnectToPG()
 	if err != nil {
-		fmt.Println("Erro ao conectar ao banco de dados:", err)
-		panic(err)
+		return err
 	}
 	for _, issue := range DDSJson.Issues {
-		err := project.SalvaProject(db, &issue.Fields.Project)
-		if err != nil {
+
+		if err := project.SalvaProject(db, &issue.Fields.Project); err != nil {
 			return err
 		}
-		err = sprint.SalvaSprint(db, issue.Fields.Sprint)
-		if err != nil {
+
+		if err = sprint.SalvaSprint(db, issue.Fields.Sprint); err != nil {
 			return err
 		}
-		err = issuetype.SalvaIssueType(db, &issue.Fields.Issuetype)
-		if err != nil {
+
+		if err = issuetype.SalvaIssueType(db, &issue.Fields.Issuetype); err != nil {
+			return err
+		}
+
+		if err = assignee.SalvaAssigned(db, &issue.Fields.Assinee); err != nil {
 			return err
 		}
 	}

@@ -28,7 +28,7 @@ type Fields struct {
 	// Customfield10618              any               `json:"customfield_10618"`
 	// Customfield10619              any               `json:"customfield_10619"`
 	// Issuelinks                    []any             `json:"issuelinks"`
-	// Assignee                      Assignee          `json:"assignee"`
+	Assinee Assignee `json:"assignee"`
 	// Components                    []any             `json:"components"`
 	// Customfield13200              any               `json:"customfield_13200"`
 	// Customfield12901              any               `json:"customfield_12901"`

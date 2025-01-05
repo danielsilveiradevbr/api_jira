@@ -26,7 +26,7 @@ func NewSprintDto(sprintdto []string) *Sprint {
 	var sprint Sprint
 	for key, dado := range dados {
 		keyValue := strings.Split(dado, "=")
-		println(keyValue[1])
+
 		if keyValue[0] == "sequence" {
 			break
 		}
