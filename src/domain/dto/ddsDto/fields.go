@@ -43,7 +43,7 @@ type Fields struct {
 	// Customfield10609              any               `json:"customfield_10609"`
 	// Subtasks                      []any             `json:"subtasks"`
 	// Customfield14400              any               `json:"customfield_14400"`
-	// Reporter                      Reporter          `json:"reporter"`
+	Reporter Reporter `json:"reporter"`
 	// Customfield13306              any               `json:"customfield_13306"`
 	// Customfield13305              any               `json:"customfield_13305"`
 	// Customfield10712              any               `json:"customfield_10712"`

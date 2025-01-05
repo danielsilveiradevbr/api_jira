@@ -6,6 +6,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/reporter"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
 	"github.com/joho/godotenv"
 )
@@ -34,6 +35,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = assignee.SalvaAssigned(db, &issue.Fields.Assinee); err != nil {
+			return err
+		}
+
+		if err = reporter.SalvaReporter(db, &issue.Fields.Reporter); err != nil {
 			return err
 		}
 	}
