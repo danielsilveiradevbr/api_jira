@@ -1,11 +1,10 @@
 package dds
 
-import "time"
+import "gorm.io/gorm"
 
 type Status struct {
-	ID           uint64 `gorm:"primaryKey;autoIncrement:true"`
-	ID_JIRA      uint64
-	DESCRICAO    string
-	DATA_CRIACAO time.Time
-	DATA_UPDATE  time.Time
+	gorm.Model
+	ID        uint64 `gorm:"primaryKey;autoIncrement:true"`
+	ID_JIRA   uint64
+	DESCRICAO string `gorm:"unique"`
 }

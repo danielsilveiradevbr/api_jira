@@ -7,6 +7,8 @@ import (
 	"time"
 
 	controllers "github.com/danielsilveiradevbr/api_jira/src/application/controllers"
+	model "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds"
+	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	service "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	u "github.com/danielsilveiradevbr/api_jira/src/utils"
 	"github.com/go-chi/chi/v5"
@@ -45,4 +47,17 @@ func AtualizaDDS() {
 		}
 		time.Sleep(time.Minute)
 	}
+}
+
+func init() {
+	println("OP")
+	db, err := b.ConnectToPG()
+	if err != nil {
+		panic(err)
+	}
+	db.AutoMigrate(&model.Priority{})
+	db.AutoMigrate(&model.Issuetype{})
+	db.AutoMigrate(&model.Project{})
+	db.AutoMigrate(&model.User{})
+	db.AutoMigrate(&model.Sprint{})
 }

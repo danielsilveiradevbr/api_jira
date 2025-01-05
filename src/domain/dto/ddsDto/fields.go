@@ -120,8 +120,8 @@ type Fields struct {
 	// Customfield10342              Customfield10342  `json:"customfield_10342"`
 	// Customfield13610              any               `json:"customfield_13610"`
 	// Customfield11310              any               `json:"customfield_11310"`
-	// Priority                      Priority          `json:"priority"`
-	Sprint []string `json:"customfield_10100"`
+	Priority Priority `json:"priority"`
+	Sprint   []string `json:"customfield_10100"`
 	// Customfield12520              any               `json:"customfield_12520"`
 	// Customfield10343              any               `json:"customfield_10343"`
 	// Customfield10101              string            `json:"customfield_10101"`

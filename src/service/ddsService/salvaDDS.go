@@ -5,17 +5,13 @@ import (
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/reporter"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
-	"github.com/joho/godotenv"
 )
 
 func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
-	err := godotenv.Load()
-	if err != nil {
-		return err
-	}
 	db, err := b.ConnectToPG()
 	if err != nil {
 		return err
@@ -39,6 +35,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = reporter.SalvaReporter(db, &issue.Fields.Reporter); err != nil {
+			return err
+		}
+
+		if err = priority.SalvaPriority(db, &issue.Fields.Priority); err != nil {
 			return err
 		}
 	}

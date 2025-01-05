@@ -1,24 +1,21 @@
 package dds
 
 import (
-	"time"
-
 	userDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
-	utils "github.com/danielsilveiradevbr/api_jira/src/utils"
+	"gorm.io/gorm"
 )
 
 type User struct {
+	gorm.Model
 	ID           int64 `gorm:"primaryKey;autoIncrement:true"`
 	KEY_JIRA     string
-	Email        string
+	Email        string `gorm:"unique"`
 	Avatar_16x16 string
 	Avatar_24x24 string
 	Avatar_32x32 string
 	Avatar_48x48 string
 	Nome         string
 	DisplayName  string
-	DATA_CRIACAO time.Time
-	DATA_UPDATE  time.Time
 }
 
 func newUser(key, emailAddress, one6X16, two4x24, three2X32, four8X48, displayName, name string) *User {
@@ -31,7 +28,6 @@ func newUser(key, emailAddress, one6X16, two4x24, three2X32, four8X48, displayNa
 		Avatar_48x48: four8X48,
 		DisplayName:  displayName,
 		Nome:         name,
-		DATA_CRIACAO: utils.GetADateTimeSaoPaulo(),
 	}
 }
 

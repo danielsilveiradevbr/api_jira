@@ -4,13 +4,11 @@ import (
 	"time"
 )
 
-type DDS struct {
+type TASK struct {
 	ID                  int64 `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA             string
-	KEY_JIRA            string
+	KEY_JIRA            string `gorm:"unique"`
 	DESCRICAO           string
-	DATA_CRIACAO        time.Time
-	DATA_UPDATE         time.Time
 	ID_USER             int64 `gorm:"foreignKey:UserID"`
 	ID_REPORT           int64 `gorm:"foreignKey:UserID"`
 	PROGRES_TOTAL       int64
