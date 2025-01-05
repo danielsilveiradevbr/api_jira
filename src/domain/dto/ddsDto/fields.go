@@ -141,7 +141,7 @@ type Fields struct {
 	// Versions                      []any             `json:"versions"`
 	// Customfield13609              any               `json:"customfield_13609"`
 	// Customfield13608              any               `json:"customfield_13608"`
-	// Status                        Status            `json:"status"`
+	Status Status `json:"status"`
 	// Customfield14010              any               `json:"customfield_14010"`
 	// Customfield14011              any               `json:"customfield_14011"`
 	// Customfield10210              any               `json:"customfield_10210"`

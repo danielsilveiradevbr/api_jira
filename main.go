@@ -50,7 +50,6 @@ func AtualizaDDS() {
 }
 
 func init() {
-	println("OP")
 	db, err := b.ConnectToPG()
 	if err != nil {
 		panic(err)
@@ -60,4 +59,5 @@ func init() {
 	db.AutoMigrate(&model.Project{})
 	db.AutoMigrate(&model.User{})
 	db.AutoMigrate(&model.Sprint{})
+	db.AutoMigrate(&model.Status{})
 }

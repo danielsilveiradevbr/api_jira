@@ -8,10 +8,12 @@ import (
 )
 
 func SalvaProject(db *gorm.DB, projetoDTO *projectDTO.Project) error {
+
 	projectCategory, err := projectCategoryRep.SalvaProjectCategory(db, &projetoDTO.ProjectCategory)
 	if err != nil {
 		return err
 	}
+
 	projeto := project.NewProject(projetoDTO)
 	projeto.ProjectCategoryID = projectCategory.ID
 	result := db.First(&projeto, "descricao = ?", projeto.DESCRICAO)
