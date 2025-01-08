@@ -60,4 +60,5 @@ func init() {
 	db.AutoMigrate(&model.User{})
 	db.AutoMigrate(&model.Sprint{})
 	db.AutoMigrate(&model.Status{})
+	db.AutoMigrate(&model.Resolution{})
 }

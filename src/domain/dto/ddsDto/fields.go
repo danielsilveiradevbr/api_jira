@@ -4,7 +4,7 @@ type Fields struct {
 	// Customfield13100              any               `json:"customfield_13100"`
 	// Customfield13101              any               `json:"customfield_13101"`
 	// Customfield14557              any               `json:"customfield_14557"`
-	// Resolution                    Resolution        `json:"resolution"`
+	Resolution Resolution `json:"resolution"`
 	// Customfield14308              any               `json:"customfield_14308"`
 	// Customfield10622              any               `json:"customfield_10622"`
 	// Customfield14309              any               `json:"customfield_14309"`

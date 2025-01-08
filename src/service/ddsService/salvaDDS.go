@@ -8,6 +8,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/reporter"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/resolution"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/status"
 )
@@ -44,6 +45,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = status.SalvaStatus(db, &issue.Fields.Status); err != nil {
+			return err
+		}
+
+		if err = resolution.SalvaResolution(db, &issue.Fields.Resolution); err != nil {
 			return err
 		}
 	}
