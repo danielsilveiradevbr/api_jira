@@ -4,6 +4,7 @@ import (
 	jsonDDS "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/classificacaoRelevancia"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/creator"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
@@ -59,6 +60,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = tipoalteracao.SalvatipoAlteracao(db, &issue.Fields.TipoAlteracao); err != nil {
+			return err
+		}
+
+		if err = classificacaoRelevancia.SalvaclassificacaoRelevancia(db, &issue.Fields.ClassificacaoRelevancia); err != nil {
 			return err
 		}
 	}

@@ -260,7 +260,7 @@ type Fields struct {
 	// Customfield13901              any               `json:"customfield_13901"`
 	// Customfield11844              any               `json:"customfield_11844"`
 	// Customfield11605              any               `json:"customfield_11605"`
-	// Customfield13904              any               `json:"customfield_13904"`
+	ClassificacaoRelevancia ClassificacaoRelevancia `json:"customfield_13904"`
 	// Customfield11604              any               `json:"customfield_11604"`
 	// Customfield13903              string            `json:"customfield_13903"`
 	TipoAlteracao TipoAlteracao `json:"customfield_13905"`
