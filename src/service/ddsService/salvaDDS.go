@@ -4,6 +4,7 @@ import (
 	jsonDDS "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/creator"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
@@ -11,6 +12,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/resolution"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/status"
+	tipoalteracao "github.com/danielsilveiradevbr/api_jira/src/repositories/tipoAlteracao"
 )
 
 func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
@@ -40,6 +42,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 			return err
 		}
 
+		if err = creator.SalvaCreator(db, &issue.Fields.Creator); err != nil {
+			return err
+		}
+
 		if err = priority.SalvaPriority(db, &issue.Fields.Priority); err != nil {
 			return err
 		}
@@ -49,6 +55,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = resolution.SalvaResolution(db, &issue.Fields.Resolution); err != nil {
+			return err
+		}
+
+		if err = tipoalteracao.SalvatipoAlteracao(db, &issue.Fields.TipoAlteracao); err != nil {
 			return err
 		}
 	}

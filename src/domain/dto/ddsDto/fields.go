@@ -167,7 +167,7 @@ type Fields struct {
 	// Customfield13716              any               `json:"customfield_13716"`
 	// Customfield10209              any               `json:"customfield_10209"`
 	// Customfield13718              any               `json:"customfield_13718"`
-	// Creator                       Creator           `json:"creator"`
+	Creator Creator `json:"creator"`
 	// Customfield14000              any               `json:"customfield_14000"`
 	// Customfield14003              any               `json:"customfield_14003"`
 	// Customfield14004              any               `json:"customfield_14004"`
@@ -263,7 +263,7 @@ type Fields struct {
 	// Customfield13904              any               `json:"customfield_13904"`
 	// Customfield11604              any               `json:"customfield_11604"`
 	// Customfield13903              string            `json:"customfield_13903"`
-	// Customfield13905              any               `json:"customfield_13905"`
+	TipoAlteracao TipoAlteracao `json:"customfield_13905"`
 	// Customfield13908              any               `json:"customfield_13908"`
 	// Customfield13907              any               `json:"customfield_13907"`
 }

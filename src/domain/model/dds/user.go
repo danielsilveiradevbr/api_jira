@@ -56,3 +56,16 @@ func NewReporter(reporter *userDto.Reporter) *User {
 		reporter.Name,
 	)
 }
+
+func NewCreator(creator *userDto.Creator) *User {
+	return newUser(
+		creator.Key,
+		creator.EmailAddress,
+		creator.AvatarUrls.One6X16,
+		creator.AvatarUrls.Two4X24,
+		creator.AvatarUrls.Three2X32,
+		creator.AvatarUrls.Four8X48,
+		creator.DisplayName,
+		creator.Name,
+	)
+}
