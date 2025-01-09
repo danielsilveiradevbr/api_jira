@@ -156,7 +156,7 @@ type Fields struct {
 	// Customfield13713              any               `json:"customfield_13713"`
 	// Customfield10204              any               `json:"customfield_10204"`
 	// Customfield13715              any               `json:"customfield_13715"`
-	// Customfield10205              any               `json:"customfield_10205"`
+	TargetEnd string `json:"customfield_10205"`
 	// Customfield14009              any               `json:"customfield_14009"`
 	// Customfield10206              any               `json:"customfield_10206"`
 	// Customfield13714              any               `json:"customfield_13714"`
@@ -266,5 +266,13 @@ type Fields struct {
 	TipoAlteracao TipoAlteracao `json:"customfield_13905"`
 	// Customfield13908              any               `json:"customfield_13908"`
 	// Customfield13907              any               `json:"customfield_13907"`
-	HorasTest float32 `json:"customfield_14539"`
+	HorasTest          float32 `json:"customfield_14539"`
+	PadronizacaoCodigo float32 `json:"customfield_14549"`
+	DuplicacaoCodigo   float32 `json:"customfield_14548"`
+	DocumentacaoCodigo float32 `json:"customfield_14550"`
+	LegibilidadeCodigo float32 `json:"customfield_14551"`
+	SimplicidadeCodigo float32 `json:"customfield_14552"`
+	ModularidadeCodigo float32 `json:"customfield_14553"`
+	QtdeRetrabalho     float32 `json:"customfield_14544"`
+	Complexidade       string  `json:"customfield_14559"`
 }
