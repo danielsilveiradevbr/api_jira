@@ -13,6 +13,10 @@ type Progress struct {
 	Percent  float32
 }
 
+func (Progress) TableName() string {
+	return "progress"
+}
+
 func NewProgress(progressDto *progressDto.Progress) *Progress {
 	return &Progress{
 		Progress: progressDto.Progress,

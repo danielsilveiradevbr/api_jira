@@ -13,6 +13,10 @@ type TipoAlteracao struct {
 	Disabled bool
 }
 
+func (TipoAlteracao) TableName() string {
+	return "tipo_alteracoes"
+}
+
 func NewTipoAlteracao(tipoAlteracaoDTO *tipoAlteracaoDTO.TipoAlteracao) *TipoAlteracao {
 	return &TipoAlteracao{
 		Self:     tipoAlteracaoDTO.Self,

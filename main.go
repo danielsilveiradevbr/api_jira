@@ -65,4 +65,5 @@ func init() {
 	db.AutoMigrate(&model.ClassificacaoRelevancia{})
 	db.AutoMigrate(&model.RequerDocumentacao{})
 	db.AutoMigrate(&model.RequerAnaliseTecnica{})
+	db.AutoMigrate(&model.Cliente{})
 }

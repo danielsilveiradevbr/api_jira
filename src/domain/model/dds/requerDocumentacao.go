@@ -13,6 +13,10 @@ type RequerDocumentacao struct {
 	Disabled bool
 }
 
+func (RequerDocumentacao) TableName() string {
+	return "requer_documentacoes"
+}
+
 func NewRequerDocumentacao(requerDocumentacaoDTO *requerDocumentacaoDTO.RequerDocumentacao) *RequerDocumentacao {
 	return &RequerDocumentacao{
 		Self:     requerDocumentacaoDTO.Self,

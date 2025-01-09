@@ -14,6 +14,10 @@ type Status struct {
 	StatusCategory   StatusCategory
 }
 
+func (Status) TableName() string {
+	return "status"
+}
+
 func NewStatus(status *statusDTO.Status) *Status {
 	return &Status{
 		ID_JIRA:   status.ID,

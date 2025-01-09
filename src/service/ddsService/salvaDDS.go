@@ -5,6 +5,7 @@ import (
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/classificacaoRelevancia"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/cliente"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/creator"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
@@ -74,6 +75,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = requerAnaliseTecnica.SalvaRequerAnaliseTecnica(db, &issue.Fields.RequerAnaliseTecnica); err != nil {
+			return err
+		}
+
+		if err = cliente.SalvaCliente(db, issue.Fields.Cliente); err != nil {
 			return err
 		}
 	}
