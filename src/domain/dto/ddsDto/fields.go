@@ -167,8 +167,8 @@ type Fields struct {
 	// Customfield13716              any               `json:"customfield_13716"`
 	// Customfield10209              any               `json:"customfield_10209"`
 	// Customfield13718              any               `json:"customfield_13718"`
-	Creator Creator `json:"creator"`
-	// Customfield14000              any               `json:"customfield_14000"`
+	Creator              Creator              `json:"creator"`
+	RequerAnaliseTecnica RequerAnaliseTecnica `json:"customfield_14000"`
 	// Customfield14003              any               `json:"customfield_14003"`
 	// Customfield14004              any               `json:"customfield_14004"`
 	// Customfield14001              any               `json:"customfield_14001"`
@@ -186,7 +186,7 @@ type Fields struct {
 	// Customfield10202              any               `json:"customfield_10202"`
 	// Customfield14006              any               `json:"customfield_14006"`
 	// Customfield13702              any               `json:"customfield_13702"`
-	// Customfield10434              string            `json:"customfield_10434"`
+	Customfield10434 string `json:"customfield_10434"`
 	// Customfield11403              any               `json:"customfield_11403"`
 	// Customfield13701              any               `json:"customfield_13701"`
 	// Customfield10435              any               `json:"customfield_10435"`
@@ -199,12 +199,12 @@ type Fields struct {
 	// Customfield13707              any               `json:"customfield_13707"`
 	// Customfield11408              any               `json:"customfield_11408"`
 	// Customfield13709              any               `json:"customfield_13709"`
-	// Timespent                     any               `json:"timespent"`
+	Timespent int64 `json:"timespent"`
 	// Customfield10430              any               `json:"customfield_10430"`
-	// Aggregatetimespent            any               `json:"aggregatetimespent"`
+	Aggregatetimespent int64 `json:"aggregatetimespent"`
 	// Customfield10431              any               `json:"customfield_10431"`
-	// Customfield10432              string            `json:"customfield_10432"`
-	// Customfield10433              string            `json:"customfield_10433"`
+	Customfield10432 string `json:"customfield_10432"`
+	Customfield10433 string `json:"customfield_10433"`
 	// Customfield10423              any               `json:"customfield_10423"`
 	// Customfield10424              any               `json:"customfield_10424"`
 	// Customfield11636              any               `json:"customfield_11636"`
@@ -219,7 +219,7 @@ type Fields struct {
 	// Customfield14101              any               `json:"customfield_14101"`
 	// Customfield10420              any               `json:"customfield_10420"`
 	// Customfield10421              any               `json:"customfield_10421"`
-	// Customfield13931              any               `json:"customfield_13931"`
+	ResumoAlteracao string `json:"customfield_13931"`
 	// Customfield10301              any               `json:"customfield_10301"`
 	RequerDocumentacao RequerDocumentacao `json:"customfield_13930"`
 	// Customfield11623              any               `json:"customfield_11623"`
