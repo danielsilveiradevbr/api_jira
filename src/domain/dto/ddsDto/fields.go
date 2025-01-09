@@ -68,7 +68,7 @@ type Fields struct {
 	// Description                   string            `json:"description"`
 	// Customfield13400              any               `json:"customfield_13400"`
 	// Customfield10800              any               `json:"customfield_10800"`
-	// Summary                       string            `json:"summary"`
+	Summary string `json:"summary"`
 	// Customfield13630              any               `json:"customfield_13630"`
 	// Customfield12541              any               `json:"customfield_12541"`
 	// Customfield10363              any               `json:"customfield_10363"`
@@ -79,7 +79,7 @@ type Fields struct {
 	// Customfield10357              any               `json:"customfield_10357"`
 	// Customfield13625              any               `json:"customfield_13625"`
 	// Customfield13624              any               `json:"customfield_13624"`
-	// Customfield13503              any               `json:"customfield_13503"`
+	SKU []string `json:"customfield_13503"`
 	// Customfield10359              any               `json:"customfield_10359"`
 	// Environment                   any               `json:"environment"`
 	// Customfield10910              any               `json:"customfield_10910"`

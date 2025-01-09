@@ -14,6 +14,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/requerAnaliseTecnica"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/requerDocumentacao"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/resolution"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/sku"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/status"
 	tipoalteracao "github.com/danielsilveiradevbr/api_jira/src/repositories/tipoAlteracao"
@@ -79,6 +80,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = cliente.SalvaCliente(db, issue.Fields.Cliente); err != nil {
+			return err
+		}
+
+		if err = sku.SalvaSku(db, issue.Fields.SKU); err != nil {
 			return err
 		}
 	}
