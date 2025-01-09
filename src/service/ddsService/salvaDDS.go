@@ -8,6 +8,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/cliente"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/creator"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/label"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/reporter"
@@ -84,6 +85,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = sku.SalvaSku(db, issue.Fields.SKU); err != nil {
+			return err
+		}
+
+		if err = label.Salvalabel(db, issue.Fields.Labels); err != nil {
 			return err
 		}
 	}

@@ -67,4 +67,5 @@ func init() {
 	db.AutoMigrate(&model.RequerAnaliseTecnica{})
 	db.AutoMigrate(&model.Cliente{})
 	db.AutoMigrate(&model.Sku{})
+	db.AutoMigrate(&model.Label{})
 }

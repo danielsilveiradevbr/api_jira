@@ -15,12 +15,12 @@ type Fields struct {
 	// Customfield12001              any               `json:"customfield_12001"`
 	// Customfield14304              any               `json:"customfield_14304"`
 	// Customfield14305              any               `json:"customfield_14305"`
-	// Customfield14302              any               `json:"customfield_14302"`
-	// Labels                        []any             `json:"labels"`
+	HorasDev float32  `json:"customfield_14302"`
+	Labels   []string `json:"labels"`
 	// Customfield10610              any               `json:"customfield_10610"`
 	// Customfield10611              any               `json:"customfield_10611"`
 	// Customfield12911              any               `json:"customfield_12911"`
-	// Aggregatetimeoriginalestimate any               `json:"aggregatetimeoriginalestimate"`
+	Aggregatetimeoriginalestimate int64 `json:"aggregatetimeoriginalestimate"`
 	// Customfield10615              any               `json:"customfield_10615"`
 	// Customfield10616              any               `json:"customfield_10616"`
 	// Customfield11705              any               `json:"customfield_11705"`
@@ -58,14 +58,14 @@ type Fields struct {
 	// Customfield13303              any               `json:"customfield_13303"`
 	// Customfield14504              any               `json:"customfield_14504"`
 	// Customfield11910              any               `json:"customfield_11910"`
-	// Resolutiondate                string            `json:"resolutiondate"`
+	Resolutiondate string `json:"resolutiondate"`
 	// Watches                       Watches           `json:"watches"`
 	// Customfield14500              any               `json:"customfield_14500"`
 	// Customfield11909              any               `json:"customfield_11909"`
-	// Updated                       string            `json:"updated"`
+	Updated string `json:"updated"`
 	// Customfield10370              any               `json:"customfield_10370"`
 	// Timeoriginalestimate          any               `json:"timeoriginalestimate"`
-	// Description                   string            `json:"description"`
+	Description string `json:"description"`
 	// Customfield13400              any               `json:"customfield_13400"`
 	// Customfield10800              any               `json:"customfield_10800"`
 	Summary string `json:"summary"`
@@ -266,4 +266,5 @@ type Fields struct {
 	TipoAlteracao TipoAlteracao `json:"customfield_13905"`
 	// Customfield13908              any               `json:"customfield_13908"`
 	// Customfield13907              any               `json:"customfield_13907"`
+	HorasTest float32 `json:"customfield_14539"`
 }
