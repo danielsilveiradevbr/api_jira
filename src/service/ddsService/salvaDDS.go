@@ -10,6 +10,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/reporter"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/requerDocumentacao"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/resolution"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/status"
@@ -64,6 +65,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = classificacaoRelevancia.SalvaclassificacaoRelevancia(db, &issue.Fields.ClassificacaoRelevancia); err != nil {
+			return err
+		}
+
+		if err = requerDocumentacao.SalvarequerDocumentacao(db, &issue.Fields.RequerDocumentacao); err != nil {
 			return err
 		}
 	}

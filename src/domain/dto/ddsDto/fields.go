@@ -221,7 +221,7 @@ type Fields struct {
 	// Customfield10421              any               `json:"customfield_10421"`
 	// Customfield13931              any               `json:"customfield_13931"`
 	// Customfield10301              any               `json:"customfield_10301"`
-	// Customfield13930              any               `json:"customfield_13930"`
+	RequerDocumentacao RequerDocumentacao `json:"customfield_13930"`
 	// Customfield11623              any               `json:"customfield_11623"`
 	// Customfield11502              any               `json:"customfield_11502"`
 	// Customfield13801              any               `json:"customfield_13801"`
