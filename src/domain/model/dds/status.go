@@ -7,9 +7,9 @@ import (
 
 type Status struct {
 	gorm.Model
-	ID               uint64 `gorm:"primaryKey;autoIncrement:true"`
+	ID               int64 `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA          string
-	DESCRICAO        string `gorm:"unique"`
+	DESCRICAO        string `gorm:"unique;not null"`
 	StatusCategoryId int64
 	StatusCategory   StatusCategory
 }

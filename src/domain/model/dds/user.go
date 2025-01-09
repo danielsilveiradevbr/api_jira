@@ -9,7 +9,7 @@ type User struct {
 	gorm.Model
 	ID           int64 `gorm:"primaryKey;autoIncrement:true"`
 	KEY_JIRA     string
-	Email        string `gorm:"unique"`
+	Email        string `gorm:"unique;not null"`
 	Avatar_16x16 string
 	Avatar_24x24 string
 	Avatar_32x32 string

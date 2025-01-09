@@ -20,7 +20,7 @@ type Fields struct {
 	// Customfield10610              any               `json:"customfield_10610"`
 	// Customfield10611              any               `json:"customfield_10611"`
 	// Customfield12911              any               `json:"customfield_12911"`
-	Aggregatetimeoriginalestimate int64 `json:"aggregatetimeoriginalestimate"`
+	AggregateTimeOriginalEstimate float32 `json:"aggregatetimeoriginalestimate"`
 	// Customfield10615              any               `json:"customfield_10615"`
 	// Customfield10616              any               `json:"customfield_10616"`
 	// Customfield11705              any               `json:"customfield_11705"`
@@ -58,7 +58,7 @@ type Fields struct {
 	// Customfield13303              any               `json:"customfield_13303"`
 	// Customfield14504              any               `json:"customfield_14504"`
 	// Customfield11910              any               `json:"customfield_11910"`
-	Resolutiondate string `json:"resolutiondate"`
+	ResolutionDate string `json:"resolutiondate"`
 	// Watches                       Watches           `json:"watches"`
 	// Customfield14500              any               `json:"customfield_14500"`
 	// Customfield11909              any               `json:"customfield_11909"`
@@ -135,7 +135,7 @@ type Fields struct {
 	// Customfield13604              any               `json:"customfield_13604"`
 	// Customfield13607              any               `json:"customfield_13607"`
 	// Customfield10339              any               `json:"customfield_10339"`
-	Timeestimate int64 `json:"timeestimate"`
+	TimeEstimate float32 `json:"timeestimate"`
 	// Customfield13606              any               `json:"customfield_13606"`
 	// Customfield11308              any               `json:"customfield_11308"`
 	// Versions                      []any             `json:"versions"`
@@ -162,7 +162,7 @@ type Fields struct {
 	// Customfield13714              any               `json:"customfield_13714"`
 	// Customfield10207              any               `json:"customfield_10207"`
 	// Customfield13717              any               `json:"customfield_13717"`
-	Aggregatetimeestimate int64 `json:"aggregatetimeestimate"`
+	AggregateTimeEstimate float64 `json:"aggregatetimeestimate"`
 	// Customfield10208              any               `json:"customfield_10208"`
 	// Customfield13716              any               `json:"customfield_13716"`
 	// Customfield10209              any               `json:"customfield_10209"`
@@ -199,9 +199,9 @@ type Fields struct {
 	// Customfield13707              any               `json:"customfield_13707"`
 	// Customfield11408              any               `json:"customfield_11408"`
 	// Customfield13709              any               `json:"customfield_13709"`
-	Timespent int64 `json:"timespent"`
+	Timespent float64 `json:"timespent"`
 	// Customfield10430              any               `json:"customfield_10430"`
-	Aggregatetimespent int64 `json:"aggregatetimespent"`
+	AggregateTimespent float64 `json:"aggregatetimespent"`
 	// Customfield10431              any               `json:"customfield_10431"`
 	Customfield10432 string `json:"customfield_10432"`
 	Customfield10433 string `json:"customfield_10433"`
@@ -213,8 +213,8 @@ type Fields struct {
 	// Customfield10428              any               `json:"customfield_10428"`
 	// Customfield10429              any               `json:"customfield_10429"`
 	// Customfield10308              any               `json:"customfield_10308"`
-	Workratio int `json:"workratio"`
-	// Created                       string            `json:"created"`
+	Workratio int    `json:"workratio"`
+	Created   string `json:"created"`
 	// Customfield14100              any               `json:"customfield_14100"`
 	// Customfield14101              any               `json:"customfield_14101"`
 	// Customfield10420              any               `json:"customfield_10420"`
@@ -231,7 +231,7 @@ type Fields struct {
 	// Customfield11625              any               `json:"customfield_11625"`
 	// Customfield13924              any               `json:"customfield_13924"`
 	// Customfield11624              any               `json:"customfield_11624"`
-	// Customfield13925              Customfield13925  `json:"customfield_13925"`
+	// Customfield13925              string  `json:"customfield_13925"`
 	// Customfield13928              any               `json:"customfield_13928"`
 	// Customfield13927              any               `json:"customfield_13927"`
 	// Customfield13929              any               `json:"customfield_13929"`
@@ -266,13 +266,13 @@ type Fields struct {
 	TipoAlteracao TipoAlteracao `json:"customfield_13905"`
 	// Customfield13908              any               `json:"customfield_13908"`
 	// Customfield13907              any               `json:"customfield_13907"`
-	HorasTest          float32 `json:"customfield_14539"`
-	PadronizacaoCodigo float32 `json:"customfield_14549"`
-	DuplicacaoCodigo   float32 `json:"customfield_14548"`
-	DocumentacaoCodigo float32 `json:"customfield_14550"`
-	LegibilidadeCodigo float32 `json:"customfield_14551"`
-	SimplicidadeCodigo float32 `json:"customfield_14552"`
-	ModularidadeCodigo float32 `json:"customfield_14553"`
-	QtdeRetrabalho     float32 `json:"customfield_14544"`
-	Complexidade       string  `json:"customfield_14559"`
+	HorasTest          float32      `json:"customfield_14539"`
+	PadronizacaoCodigo float32      `json:"customfield_14549"`
+	DuplicacaoCodigo   float32      `json:"customfield_14548"`
+	DocumentacaoCodigo float32      `json:"customfield_14550"`
+	LegibilidadeCodigo float32      `json:"customfield_14551"`
+	SimplicidadeCodigo float32      `json:"customfield_14552"`
+	ModularidadeCodigo float32      `json:"customfield_14553"`
+	QtdeRetrabalho     float32      `json:"customfield_14544"`
+	Complexidade       Complexidade `json:"customfield_14559"`
 }

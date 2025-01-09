@@ -8,7 +8,7 @@ import (
 type ProjectCategory struct {
 	gorm.Model
 	ID        int64  `gorm:"primaryKey;autoIncrement:true"`
-	Nome      string `gorm:"unique"`
+	Nome      string `gorm:"unique;not null"`
 	Descricao string
 }
 

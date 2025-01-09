@@ -10,7 +10,7 @@ type Resolution struct {
 	ID        int64 `gorm:"primaryKey;autoIncrement:true"`
 	Url       string
 	Descricao string
-	Name      string `gorm:"unique"`
+	Name      string `gorm:"unique;not null"`
 }
 
 func NewResolution(resolutionDTO *resolutionDTO.Resolution) *Resolution {

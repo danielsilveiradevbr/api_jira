@@ -8,7 +8,7 @@ import (
 type Issuetype struct {
 	gorm.Model
 	ID   int64  `gorm:"primaryKey;autoIncrement:true"`
-	NOME string `gorm:"unique"`
+	NOME string `gorm:"unique;not null"`
 }
 
 func NewIssuetype(issuetypedto *issueTypeDto.Issuetype) *Issuetype {

@@ -6,6 +6,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/classificacaoRelevancia"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/cliente"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/complexidade"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/creator"
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/label"
@@ -89,6 +90,10 @@ func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
 		}
 
 		if err = label.Salvalabel(db, issue.Fields.Labels); err != nil {
+			return err
+		}
+
+		if err = complexidade.SalvaComplexidade(db, &issue.Fields.Complexidade); err != nil {
 			return err
 		}
 	}

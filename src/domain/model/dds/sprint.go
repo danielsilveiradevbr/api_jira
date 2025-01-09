@@ -12,7 +12,7 @@ type Sprint struct {
 	ID            int64 `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA       string
 	STATUS        string
-	NOME          string `gorm:"unique"`
+	NOME          string `gorm:"unique;not null"`
 	COMPLETE_DATE time.Time
 	START_DATE    time.Time
 	END_DATE      time.Time
