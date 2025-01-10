@@ -1,12 +1,12 @@
 package resolution
 
 import (
-	resolutionDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	resolutionDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/resolution"
 	resolutionModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/resolution"
 	"gorm.io/gorm"
 )
 
-func SalvaResolution(db *gorm.DB, resolutionDTO *resolutionDTO.Resolution) error {
+func SalvaResolution(db *gorm.DB, resolutionDTO *resolutionDto.Resolution) error {
 
 	resolution := resolutionModel.NewResolution(resolutionDTO)
 	result := db.First(&resolution, "name = ?", resolution.Name)

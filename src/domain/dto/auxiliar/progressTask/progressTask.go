@@ -1,4 +1,4 @@
-package auxiliar
+package progressTaskDto
 
 type ProgressTask struct {
 	TaskId    int

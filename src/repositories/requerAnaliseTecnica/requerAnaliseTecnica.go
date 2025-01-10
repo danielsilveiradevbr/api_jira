@@ -1,12 +1,12 @@
 package requerAnaliseTecnica
 
 import (
-	requerAnaliseTecnicaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	requerAnaliseTecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerAnaliseTecnica"
 	requerAnaliseTecnicaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerAnaliseTecnica"
 	"gorm.io/gorm"
 )
 
-func SalvaRequerAnaliseTecnica(db *gorm.DB, requerAnaliseTecnicaDTO *requerAnaliseTecnicaDTO.RequerAnaliseTecnica) error {
+func SalvaRequerAnaliseTecnica(db *gorm.DB, requerAnaliseTecnicaDTO *requerAnaliseTecnicaDto.RequerAnaliseTecnica) error {
 
 	requerAnaliseTecnica := requerAnaliseTecnicaModel.NewRequerAnaliseTecnica(requerAnaliseTecnicaDTO)
 	result := db.First(&requerAnaliseTecnica, "value = ?", requerAnaliseTecnica.Value)

@@ -1,12 +1,12 @@
 package priority
 
 import (
-	priorityDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/priority"
 	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
 	"gorm.io/gorm"
 )
 
-func SalvaPriority(db *gorm.DB, priorityDTO *priorityDTO.Priority) error {
+func SalvaPriority(db *gorm.DB, priorityDTO *priorityDto.Priority) error {
 	priority := priorityModel.NewPriority(priorityDTO)
 	result := db.First(&priority, "descricao = ?", priority.DESCRICAO)
 	if result.RowsAffected == 0 {

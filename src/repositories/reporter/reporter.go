@@ -1,12 +1,12 @@
 package reporter
 
 import (
-	reporterDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/reporter"
 	reporterModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 	"gorm.io/gorm"
 )
 
-func SalvaReporter(db *gorm.DB, reporterDTO *reporterDTO.Reporter) error {
+func SalvaReporter(db *gorm.DB, reporterDTO *reporterDto.Reporter) error {
 	reporter := reporterModel.NewReporter(reporterDTO)
 	result := db.First(&reporter, "email = ?", reporter.Email)
 	if result.RowsAffected == 0 {

@@ -1,12 +1,12 @@
 package tipoalteracao
 
 import (
-	tipoAlteracaoDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	tipoAlteracaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/tipoAlteracao"
 	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
 	"gorm.io/gorm"
 )
 
-func SalvatipoAlteracao(db *gorm.DB, tipoAlteracaoDTO *tipoAlteracaoDTO.TipoAlteracao) error {
+func SalvatipoAlteracao(db *gorm.DB, tipoAlteracaoDTO *tipoAlteracaoDto.TipoAlteracao) error {
 
 	tipoAlteracao := tipoAlteracaoModel.NewTipoAlteracao(tipoAlteracaoDTO)
 	result := db.First(&tipoAlteracao, "value = ?", tipoAlteracao.Value)

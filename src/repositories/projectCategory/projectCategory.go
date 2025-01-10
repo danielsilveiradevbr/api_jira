@@ -1,12 +1,12 @@
 package projectcategory
 
 import (
-	projectCategoryDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	projectCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/projectCategory"
 	projectCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/projectCategory"
 	"gorm.io/gorm"
 )
 
-func SalvaProjectCategory(db *gorm.DB, projectCategoryDTO *projectCategoryDTO.ProjectCategory) (*projectCategoryModel.ProjectCategory, error) {
+func SalvaProjectCategory(db *gorm.DB, projectCategoryDTO *projectCategoryDto.ProjectCategory) (*projectCategoryModel.ProjectCategory, error) {
 	projectCategory := projectCategoryModel.NewProjectCategory(projectCategoryDTO)
 	result := db.First(&projectCategory, "nome = ?", projectCategory.Nome)
 	if result.RowsAffected == 0 {

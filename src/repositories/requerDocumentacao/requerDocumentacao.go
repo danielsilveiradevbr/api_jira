@@ -1,12 +1,12 @@
 package requerDocumentacao
 
 import (
-	requerDocumentacaoDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	requerDocumentacaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerDocumentacao"
 	requerDocumentacaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerDocumentacao"
 	"gorm.io/gorm"
 )
 
-func SalvarequerDocumentacao(db *gorm.DB, requerDocumentacaoDTO *requerDocumentacaoDTO.RequerDocumentacao) error {
+func SalvarequerDocumentacao(db *gorm.DB, requerDocumentacaoDTO *requerDocumentacaoDto.RequerDocumentacao) error {
 
 	requerDocumentacao := requerDocumentacaoModel.NewRequerDocumentacao(requerDocumentacaoDTO)
 	result := db.First(&requerDocumentacao, "value = ?", requerDocumentacao.Value)

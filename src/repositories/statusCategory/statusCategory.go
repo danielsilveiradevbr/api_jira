@@ -1,12 +1,12 @@
 package statuscategory
 
 import (
-	statusCategoryDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	statusCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/statusCategory"
 	statusCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/statusCategory"
 	"gorm.io/gorm"
 )
 
-func SalvaStatusCategory(db *gorm.DB, statusCategoryDTO *statusCategoryDTO.StatusCategory) (*statusCategoryModel.StatusCategory, error) {
+func SalvaStatusCategory(db *gorm.DB, statusCategoryDTO *statusCategoryDto.StatusCategory) (*statusCategoryModel.StatusCategory, error) {
 	statusCategory := statusCategoryModel.NewStatusCategory(statusCategoryDTO)
 	result := db.First(&statusCategory, "nome = ?", statusCategory.Nome)
 	if result.RowsAffected == 0 {

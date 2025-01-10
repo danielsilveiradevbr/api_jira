@@ -1,14 +1,14 @@
 package label
 
 import (
-	labelDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	labelDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/label"
 	labelModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/label"
 	"gorm.io/gorm"
 )
 
 func Salvalabel(db *gorm.DB, labels []string) error {
 	for _, value := range labels {
-		var labeldto = &labelDTO.Label{
+		var labeldto = &labelDto.Label{
 			Name: value,
 		}
 		var label = labelModel.NewLabel(labeldto)

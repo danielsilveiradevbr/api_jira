@@ -3,14 +3,14 @@ package sprint
 import (
 	"fmt"
 
-	dtoSprint "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sprint"
 	sprint "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
 	"gorm.io/gorm"
 )
 
 func SalvaSprint(db *gorm.DB, sprintString []string) (*sprint.Sprint, error) {
 	// Exemplo de expressão regular para extrair informações básicas
-	sprintDto := dtoSprint.NewSprintDto(sprintString)
+	sprintDto := sprintDto.NewSprintDto(sprintString)
 	if sprintDto == nil {
 		return nil, fmt.Errorf("nao foi possivel criar a sprint")
 	}

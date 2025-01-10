@@ -1,13 +1,13 @@
 package project
 
 import (
-	projectDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
 	project "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
 	projectCategoryRep "github.com/danielsilveiradevbr/api_jira/src/repositories/projectCategory"
 	"gorm.io/gorm"
 )
 
-func SalvaProject(db *gorm.DB, projetoDTO *projectDTO.Project) (*project.Project, error) {
+func SalvaProject(db *gorm.DB, projetoDTO *projectDto.Project) (*project.Project, error) {
 
 	projectCategory, err := projectCategoryRep.SalvaProjectCategory(db, &projetoDTO.ProjectCategory)
 	if err != nil {

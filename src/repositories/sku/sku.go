@@ -1,14 +1,14 @@
 package sku
 
 import (
-	skuDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	skuDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sku"
 	skuModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sku"
 	"gorm.io/gorm"
 )
 
 func SalvaSku(db *gorm.DB, skus []string) error {
 	for _, value := range skus {
-		var skudto = &skuDTO.Sku{
+		var skudto = &skuDto.Sku{
 			Name: value,
 		}
 		var sku = skuModel.NewSku(skudto)
