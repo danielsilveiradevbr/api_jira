@@ -1,4 +1,4 @@
-package dds
+package priorityModel
 
 import (
 	priority "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

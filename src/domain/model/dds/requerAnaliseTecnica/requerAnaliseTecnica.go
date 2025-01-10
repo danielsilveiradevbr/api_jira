@@ -1,4 +1,4 @@
-package dds
+package requerAnaliseTecnicaModel
 
 import (
 	requerAnaliseTecnicaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

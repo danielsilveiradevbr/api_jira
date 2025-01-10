@@ -7,11 +7,11 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaProject(db *gorm.DB, projetoDTO *projectDTO.Project) error {
+func SalvaProject(db *gorm.DB, projetoDTO *projectDTO.Project) (*project.Project, error) {
 
 	projectCategory, err := projectCategoryRep.SalvaProjectCategory(db, &projetoDTO.ProjectCategory)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	projeto := project.NewProject(projetoDTO)
@@ -20,10 +20,10 @@ func SalvaProject(db *gorm.DB, projetoDTO *projectDTO.Project) error {
 	if result.RowsAffected == 0 {
 		res := db.Create(&projeto)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&projeto)
 	}
-	return nil
+	return projeto, nil
 }

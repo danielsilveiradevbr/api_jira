@@ -1,4 +1,4 @@
-package dds
+package labelModel
 
 import (
 	labelDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

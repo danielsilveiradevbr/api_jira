@@ -1,4 +1,4 @@
-package dds
+package requerDocumentacaoModel
 
 import (
 	requerDocumentacaoDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

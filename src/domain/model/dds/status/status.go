@@ -1,7 +1,8 @@
-package dds
+package statusModel
 
 import (
 	statusDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	statusCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/statusCategory"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +12,7 @@ type Status struct {
 	ID_JIRA          string
 	DESCRICAO        string `gorm:"unique;not null"`
 	StatusCategoryId int64
-	StatusCategory   StatusCategory
+	StatusCategory   statusCategoryModel.StatusCategory
 }
 
 func (Status) TableName() string {

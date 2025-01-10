@@ -1,4 +1,4 @@
-package dds
+package progressModel
 
 import (
 	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

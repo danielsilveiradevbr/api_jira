@@ -1,4 +1,4 @@
-package dds
+package classificacaoRelevanciaModel
 
 import (
 	classificacaoRelevanciaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

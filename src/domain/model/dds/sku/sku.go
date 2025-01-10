@@ -1,4 +1,4 @@
-package dds
+package skuModel
 
 import (
 	skuDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

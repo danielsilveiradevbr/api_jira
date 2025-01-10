@@ -1,4 +1,4 @@
-package dds
+package resolutionModel
 
 import (
 	resolutionDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

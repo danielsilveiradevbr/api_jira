@@ -1,7 +1,8 @@
-package dds
+package projectModel
 
 import (
 	project "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	projectCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/projectCategory"
 	"gorm.io/gorm"
 )
 
@@ -17,7 +18,7 @@ type Project struct {
 	Avatar_48x48      string
 	projectTypeKey    string
 	ProjectCategoryID int64
-	ProjectCategory   ProjectCategory
+	ProjectCategory   projectCategoryModel.ProjectCategory
 }
 
 func NewProject(projetodto *project.Project) *Project {

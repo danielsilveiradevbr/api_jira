@@ -1,7 +1,18 @@
-package dds
+package taskModel
 
 import (
 	"time"
+
+	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
+	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
+	issuetypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
+	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
+	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
+	requerAnaliseTecnicaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerAnaliseTecnica"
+	requerDocumentacaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerDocumentacao"
+	sprintModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
+	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
+	userModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 )
 
 type TASK struct {
@@ -26,29 +37,29 @@ type TASK struct {
 	RESOLUTION_DATE                  time.Time
 	HORAS_DEV                        float32
 	COMPLEXIDADEId                   int64
-	COMPLEXIDADE                     Complexidade
+	COMPLEXIDADE                     complexidadeModel.Complexidade
 	AGGREGATE_TIME_ORIGINAL_ESTIMATE float32
 	AssineeId                        int64
-	Assinee                          User
+	Assinee                          userModel.User
 	ReporterId                       int64
-	Reporter                         User
+	Reporter                         userModel.User
 	IssuetypeId                      int64
-	Issuetype                        Issuetype
+	Issuetype                        issuetypeModel.Issuetype
 	ProjectId                        int64
-	Project                          Project
+	Project                          projectModel.Project
 	Update                           time.Time
 	CUSTOMFIELD_10105                string
 	PriorityId                       int64
-	Priority                         Priority
+	Priority                         priorityModel.Priority
 	SprintId                         int64
-	Sprint                           Sprint
+	Sprint                           sprintModel.Sprint
 	SOLUCAO                          string
 	TIME_ESTIMATE                    float32
 	AGGREGATE_TIME_ESTIMATE          float32
 	CreatorId                        int64
-	Creator                          User
+	Creator                          userModel.User
 	RequerAnaliseTecnicaId           int64
-	RequerAnaliseTecnica             RequerAnaliseTecnica
+	RequerAnaliseTecnica             requerAnaliseTecnicaModel.RequerAnaliseTecnica
 	CUSTOMFIELD_10434                string
 	TIMESPENT                        float32
 	AGGREGATE_TIMESPENT              float32
@@ -57,10 +68,10 @@ type TASK struct {
 	WORKRATIO                        float32
 	RESUMO_ALTERACAO                 string
 	RequerDocumentacaoId             int64
-	RequerDocumentacao               RequerDocumentacao
+	RequerDocumentacao               requerDocumentacaoModel.RequerDocumentacao
 	ClassificacaoRelevanciaId        int64
-	ClassificacaoRelevancia          ClassificacaoRelevancia
+	ClassificacaoRelevancia          classificacaoRelevanciaModel.ClassificacaoRelevancia
 	TipoAlteracaoId                  int64
-	TipoAlteracao                    TipoAlteracao
+	TipoAlteracao                    tipoAlteracaoModel.TipoAlteracao
 	HORAS_TEST                       float32
 }

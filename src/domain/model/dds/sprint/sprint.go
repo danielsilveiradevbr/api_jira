@@ -1,4 +1,4 @@
-package dds
+package sprintModel
 
 import (
 	"time"

@@ -8,21 +8,21 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaSprint(db *gorm.DB, sprintString []string) error {
+func SalvaSprint(db *gorm.DB, sprintString []string) (*sprint.Sprint, error) {
 	// Exemplo de expressão regular para extrair informações básicas
 	sprintDto := dtoSprint.NewSprintDto(sprintString)
 	if sprintDto == nil {
-		return fmt.Errorf("nao foi possivel criar a sprint")
+		return nil, fmt.Errorf("nao foi possivel criar a sprint")
 	}
 	sprint := sprint.NewSprint(sprintDto)
 	result := db.First(&sprint, "nome = ?", sprint.NOME)
 	if result.RowsAffected == 0 {
 		res := db.Create(&sprint)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&sprint)
 	}
-	return nil
+	return sprint, nil
 }

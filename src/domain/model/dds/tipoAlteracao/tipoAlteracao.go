@@ -1,4 +1,4 @@
-package dds
+package tipoAlteracaoModel
 
 import (
 	tipoAlteracaoDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

@@ -1,4 +1,4 @@
-package dds
+package userModel
 
 import (
 	userDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

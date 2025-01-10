@@ -1,4 +1,4 @@
-package dds
+package complexidadeModel
 
 import (
 	complexidadeDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

@@ -1,4 +1,4 @@
-package dds
+package projectCategoryModel
 
 import (
 	projectCategoryDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"

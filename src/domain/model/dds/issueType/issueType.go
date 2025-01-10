@@ -1,4 +1,4 @@
-package dds
+package issuetypeModel
 
 import (
 	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
