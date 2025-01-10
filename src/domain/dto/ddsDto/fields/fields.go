@@ -178,7 +178,7 @@ type Fields struct {
 	// Customfield13714              any               `json:"customfield_13714"`
 	// Customfield10207              any               `json:"customfield_10207"`
 	// Customfield13717              any               `json:"customfield_13717"`
-	AggregateTimeEstimate float64 `json:"aggregatetimeestimate"`
+	AggregateTimeEstimate float32 `json:"aggregatetimeestimate"`
 	// Customfield10208              any               `json:"customfield_10208"`
 	// Customfield13716              any               `json:"customfield_13716"`
 	// Customfield10209              any               `json:"customfield_10209"`
@@ -215,9 +215,9 @@ type Fields struct {
 	// Customfield13707              any               `json:"customfield_13707"`
 	// Customfield11408              any               `json:"customfield_11408"`
 	// Customfield13709              any               `json:"customfield_13709"`
-	Timespent float64 `json:"timespent"`
+	Timespent float32 `json:"timespent"`
 	// Customfield10430              any               `json:"customfield_10430"`
-	AggregateTimespent float64 `json:"aggregatetimespent"`
+	AggregateTimespent float32 `json:"aggregatetimespent"`
 	// Customfield10431              any               `json:"customfield_10431"`
 	Customfield10432 string `json:"customfield_10432"`
 	Customfield10433 string `json:"customfield_10433"`
@@ -229,8 +229,8 @@ type Fields struct {
 	// Customfield10428              any               `json:"customfield_10428"`
 	// Customfield10429              any               `json:"customfield_10429"`
 	// Customfield10308              any               `json:"customfield_10308"`
-	Workratio int    `json:"workratio"`
-	Created   string `json:"created"`
+	Workratio float32 `json:"workratio"`
+	Created   string  `json:"created"`
 	// Customfield14100              any               `json:"customfield_14100"`
 	// Customfield14101              any               `json:"customfield_14101"`
 	// Customfield10420              any               `json:"customfield_10420"`

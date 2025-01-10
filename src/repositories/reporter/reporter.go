@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaReporter(db *gorm.DB, reporterDTO *reporterDto.Reporter) error {
+func SalvaReporter(db *gorm.DB, reporterDTO *reporterDto.Reporter) (*reporterModel.User, error) {
 	reporter := reporterModel.NewReporter(db, reporterDTO)
 	result := db.First(&reporter, "email = ?", reporter.Email)
 	if result.RowsAffected == 0 {
 		res := db.Create(&reporter)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&reporter)
 	}
-	return nil
+	return reporter, nil
 }

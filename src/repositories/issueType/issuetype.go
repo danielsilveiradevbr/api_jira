@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaIssueType(db *gorm.DB, issueTypeDTO *issueTypeDto.Issuetype) error {
+func SalvaIssueType(db *gorm.DB, issueTypeDTO *issueTypeDto.Issuetype) (*issueModel.IssueType, error) {
 	issueType := issueModel.NewIssuetype(issueTypeDTO)
 	result := db.First(&issueType, "nome = ?", issueType.NOME)
 	if result.RowsAffected == 0 {
 		res := db.Create(&issueType)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&issueType)
 	}
-	return nil
+	return issueType, nil
 }

@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaComplexidade(db *gorm.DB, complexidadeDTO *complexidadeDto.Complexidade) error {
+func SalvaComplexidade(db *gorm.DB, complexidadeDTO *complexidadeDto.Complexidade) (*complexidadeModel.Complexidade, error) {
 	complexidade := complexidadeModel.NewComplexidade(complexidadeDTO)
 	result := db.First(&complexidade, "codigo = ?", complexidade.Codigo)
 	if result.RowsAffected == 0 {
 		res := db.Create(&complexidade)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&complexidade)
 	}
-	return nil
+	return complexidade, nil
 }

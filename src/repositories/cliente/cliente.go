@@ -6,22 +6,23 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaCliente(db *gorm.DB, clientes []string) error {
+func SalvaCliente(db *gorm.DB, clientes []string) (*clienteModel.Cliente, error) {
+	var cliente = &clienteModel.Cliente{}
 	for _, value := range clientes {
 		var clienteDto = &clienteDto.Cliente{
 			Name: value,
 		}
-		var cliente = clienteModel.NewCliente(clienteDto)
+		cliente = clienteModel.NewCliente(clienteDto)
 		result := db.First(&cliente, "Nome = ?", cliente.Nome)
 		if result.RowsAffected == 0 {
 			res := db.Create(&cliente)
 			if res.Error != nil {
-				return res.Error
+				return nil, res.Error
 			}
 		} else {
 			db.Save(&cliente)
 		}
 	}
 
-	return nil
+	return cliente, nil
 }

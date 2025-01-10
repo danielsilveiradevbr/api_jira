@@ -6,17 +6,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvatipoAlteracao(db *gorm.DB, tipoAlteracaoDTO *tipoAlteracaoDto.TipoAlteracao) error {
+func SalvaTipoAlteracao(db *gorm.DB, tipoAlteracaoDTO *tipoAlteracaoDto.TipoAlteracao) (*tipoAlteracaoModel.TipoAlteracao, error) {
 
 	tipoAlteracao := tipoAlteracaoModel.NewTipoAlteracao(tipoAlteracaoDTO)
 	result := db.First(&tipoAlteracao, "value = ?", tipoAlteracao.Value)
 	if result.RowsAffected == 0 {
 		res := db.Create(&tipoAlteracao)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&tipoAlteracao)
 	}
-	return nil
+	return tipoAlteracao, nil
 }

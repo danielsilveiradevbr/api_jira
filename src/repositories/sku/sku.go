@@ -6,22 +6,23 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaSku(db *gorm.DB, skus []string) error {
+func SalvaSku(db *gorm.DB, skus []string) (*skuModel.Sku, error) {
+	var sku = &skuModel.Sku{}
 	for _, value := range skus {
 		var skudto = &skuDto.Sku{
 			Name: value,
 		}
-		var sku = skuModel.NewSku(skudto)
+		sku = skuModel.NewSku(skudto)
 		result := db.First(&sku, "Nome = ?", sku.Nome)
 		if result.RowsAffected == 0 {
 			res := db.Create(&sku)
 			if res.Error != nil {
-				return res.Error
+				return nil, res.Error
 			}
 		} else {
 			db.Save(&sku)
 		}
 	}
 
-	return nil
+	return sku, nil
 }

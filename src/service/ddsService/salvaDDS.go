@@ -2,20 +2,23 @@ package ddsservice
 
 import (
 	jsonDdsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
+	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
-	"github.com/danielsilveiradevbr/api_jira/src/repositories/task"
+	taskRep "github.com/danielsilveiradevbr/api_jira/src/repositories/task"
 )
 
-func SalvaDDS(DDSJson *jsonDdsDto.JsonDDS) error {
+func SalvaDDS(DDSJson *jsonDdsDto.JsonDDS) (*taskModel.Task, error) {
 	db, err := b.ConnectToPG()
 	if err != nil {
-		return err
+		return nil, err
 	}
+	var task = &taskModel.Task{}
 	for _, issue := range DDSJson.Issues {
-		if err := task.SalvaTask(db, &issue); err != nil {
-			return err
+		task, err = taskRep.SalvaTask(db, &issue)
+		if err != nil {
+			return nil, err
 		}
 	}
 
-	return nil
+	return task, nil
 }

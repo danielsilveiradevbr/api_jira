@@ -6,17 +6,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvarequerDocumentacao(db *gorm.DB, requerDocumentacaoDTO *requerDocumentacaoDto.RequerDocumentacao) error {
+func SalvaRequerDocumentacao(db *gorm.DB, requerDocumentacaoDTO *requerDocumentacaoDto.RequerDocumentacao) (*requerDocumentacaoModel.RequerDocumentacao, error) {
 
 	requerDocumentacao := requerDocumentacaoModel.NewRequerDocumentacao(requerDocumentacaoDTO)
 	result := db.First(&requerDocumentacao, "value = ?", requerDocumentacao.Value)
 	if result.RowsAffected == 0 {
 		res := db.Create(&requerDocumentacao)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&requerDocumentacao)
 	}
-	return nil
+	return requerDocumentacao, nil
 }

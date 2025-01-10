@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaPriority(db *gorm.DB, priorityDTO *priorityDto.Priority) error {
+func SalvaPriority(db *gorm.DB, priorityDTO *priorityDto.Priority) (*priorityModel.Priority, error) {
 	priority := priorityModel.NewPriority(priorityDTO)
 	result := db.First(&priority, "descricao = ?", priority.DESCRICAO)
 	if result.RowsAffected == 0 {
 		res := db.Create(&priority)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&priority)
 	}
-	return nil
+	return priority, nil
 }

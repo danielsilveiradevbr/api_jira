@@ -6,17 +6,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaclassificacaoRelevancia(db *gorm.DB, classificacaoRelevanciaDTO *classificacaoRelevanciaDto.ClassificacaoRelevancia) error {
+func SalvaClassificacaoRelevancia(db *gorm.DB, classificacaoRelevanciaDTO *classificacaoRelevanciaDto.ClassificacaoRelevancia) (*classificacaoRelevanciaModel.ClassificacaoRelevancia, error) {
 
 	classificacaoRelevancia := classificacaoRelevanciaModel.NewClassificacaoRelevancia(classificacaoRelevanciaDTO)
 	result := db.First(&classificacaoRelevancia, "value = ?", classificacaoRelevancia.Value)
 	if result.RowsAffected == 0 {
 		res := db.Create(&classificacaoRelevancia)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&classificacaoRelevancia)
 	}
-	return nil
+	return classificacaoRelevancia, nil
 }

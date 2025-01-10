@@ -6,17 +6,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaRequerAnaliseTecnica(db *gorm.DB, requerAnaliseTecnicaDTO *requerAnaliseTecnicaDto.RequerAnaliseTecnica) error {
+func SalvaRequerAnaliseTecnica(db *gorm.DB, requerAnaliseTecnicaDTO *requerAnaliseTecnicaDto.RequerAnaliseTecnica) (*requerAnaliseTecnicaModel.RequerAnaliseTecnica, error) {
 
 	requerAnaliseTecnica := requerAnaliseTecnicaModel.NewRequerAnaliseTecnica(requerAnaliseTecnicaDTO)
 	result := db.First(&requerAnaliseTecnica, "value = ?", requerAnaliseTecnica.Value)
 	if result.RowsAffected == 0 {
 		res := db.Create(&requerAnaliseTecnica)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&requerAnaliseTecnica)
 	}
-	return nil
+	return requerAnaliseTecnica, nil
 }

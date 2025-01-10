@@ -1,7 +1,8 @@
-package task
+package taskRep
 
 import (
 	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issues"
+	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/classificacaoRelevancia"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/cliente"
@@ -22,83 +23,120 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) error {
-	if _, err := project.SalvaProject(db, &taskDTO.Fields.Project); err != nil {
-		return err
+func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) (*taskModel.Task, error) {
+	project, err := project.SalvaProject(db, &taskDTO.Fields.Project)
+	if err != nil {
+		return nil, err
 	}
 
-	if _, err := sprint.SalvaSprint(db, taskDTO.Fields.Sprint); err != nil {
-		return err
+	sprint, err := sprint.SalvaSprint(db, taskDTO.Fields.Sprint)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := issuetype.SalvaIssueType(db, &taskDTO.Fields.Issuetype); err != nil {
-		return err
+	issueType, err := issuetype.SalvaIssueType(db, &taskDTO.Fields.Issuetype)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := assignee.SalvaAssigned(db, &taskDTO.Fields.Assinee); err != nil {
-		return err
+	assignee, err := assignee.SalvaAssigned(db, &taskDTO.Fields.Assinee)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := reporter.SalvaReporter(db, &taskDTO.Fields.Reporter); err != nil {
-		return err
+	reporter, err := reporter.SalvaReporter(db, &taskDTO.Fields.Reporter)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := creator.SalvaCreator(db, &taskDTO.Fields.Creator); err != nil {
-		return err
+	creator, err := creator.SalvaCreator(db, &taskDTO.Fields.Creator)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := priority.SalvaPriority(db, &taskDTO.Fields.Priority); err != nil {
-		return err
+	priority, err := priority.SalvaPriority(db, &taskDTO.Fields.Priority)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := status.SalvaStatus(db, &taskDTO.Fields.Status); err != nil {
-		return err
+	_, err = status.SalvaStatus(db, &taskDTO.Fields.Status)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := resolution.SalvaResolution(db, &taskDTO.Fields.Resolution); err != nil {
-		return err
+	resolution, err := resolution.SalvaResolution(db, &taskDTO.Fields.Resolution)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := tipoalteracao.SalvatipoAlteracao(db, &taskDTO.Fields.TipoAlteracao); err != nil {
-		return err
+	tipoAlteracao, err := tipoalteracao.SalvaTipoAlteracao(db, &taskDTO.Fields.TipoAlteracao)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := classificacaoRelevancia.SalvaclassificacaoRelevancia(db, &taskDTO.Fields.ClassificacaoRelevancia); err != nil {
-		return err
+	classificacaoRelevancia, err := classificacaoRelevancia.SalvaClassificacaoRelevancia(db, &taskDTO.Fields.ClassificacaoRelevancia)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := requerDocumentacao.SalvarequerDocumentacao(db, &taskDTO.Fields.RequerDocumentacao); err != nil {
-		return err
+	requerDocumentacao, err := requerDocumentacao.SalvaRequerDocumentacao(db, &taskDTO.Fields.RequerDocumentacao)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := requerAnaliseTecnica.SalvaRequerAnaliseTecnica(db, &taskDTO.Fields.RequerAnaliseTecnica); err != nil {
-		return err
+	requerAnaliseTecnica, err := requerAnaliseTecnica.SalvaRequerAnaliseTecnica(db, &taskDTO.Fields.RequerAnaliseTecnica)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := cliente.SalvaCliente(db, taskDTO.Fields.Cliente); err != nil {
-		return err
+	cliente, err := cliente.SalvaCliente(db, taskDTO.Fields.Cliente)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := sku.SalvaSku(db, taskDTO.Fields.SKU); err != nil {
-		return err
+	sku, err := sku.SalvaSku(db, taskDTO.Fields.SKU)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := label.Salvalabel(db, taskDTO.Fields.Labels); err != nil {
-		return err
+	label, err := label.Salvalabel(db, taskDTO.Fields.Labels)
+	if err != nil {
+		return nil, err
 	}
 
-	if err := complexidade.SalvaComplexidade(db, &taskDTO.Fields.Complexidade); err != nil {
-		return err
+	complexidade, err := complexidade.SalvaComplexidade(db, &taskDTO.Fields.Complexidade)
+	if err != nil {
+		return nil, err
 	}
-	// task := taskModel.(taskDTO)
-	// result := db.First(&task, "codigo = ?", task.Codigo)
-	// if result.RowsAffected == 0 {
-	// 	res := db.Create(&task)
-	// 	if res.Error != nil {
-	// 		return res.Error
-	// 	}
-	// } else {
-	// 	db.Save(&task)
-	// }
-	return nil
+	task := taskModel.NewTask(taskDTO)
+	task.PriorityId = project.ID
+	task.SprintId = sprint.ID
+	// task.PROGRES_TOTAL = 0,
+	// task.PROGRESS = 0,
+	// task.PERC_PROGRESS = 0,
+	task.TIPO = project.KEY_JIRA
+	task.COMPLEXIDADEId = complexidade.ID
+	task.AssineeId = assignee.ID
+	task.ReporterId = reporter.ID
+	task.IssueTypeId = issueType.ID
+	task.PriorityId = priority.ID
+	task.CreatorId = creator.ID
+	task.RequerAnaliseTecnicaId = requerAnaliseTecnica.Id
+	task.RequerDocumentacaoId = requerDocumentacao.Id
+	task.ClassificacaoRelevanciaId = classificacaoRelevancia.Id
+	task.TipoAlteracaoId = tipoAlteracao.Id
+	task.ResolutionId = resolution.ID
+	task.ClienteId = cliente.ID
+	task.SkuId = sku.ID
+	task.LabelId = label.ID
+	result := db.First(&task, "key_jira = ?", task.KEY_JIRA)
+	if result.RowsAffected == 0 {
+		res := db.Create(&task)
+		if res.Error != nil {
+			return nil, res.Error
+		}
+	} else {
+		db.Save(&task)
+	}
+	return task, nil
 }

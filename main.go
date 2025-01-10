@@ -20,6 +20,7 @@ import (
 	skuModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sku"
 	sprintModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
 	statusModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/status"
+	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
 	userModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
@@ -83,4 +84,5 @@ func init() {
 	db.AutoMigrate(&skuModel.Sku{})
 	db.AutoMigrate(&labelModel.Label{})
 	db.AutoMigrate(&complexidadeModel.Complexidade{})
+	db.AutoMigrate(&taskModel.Task{})
 }

@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaCreator(db *gorm.DB, creatorDTO *creatorDto.Creator) error {
+func SalvaCreator(db *gorm.DB, creatorDTO *creatorDto.Creator) (*creatorModel.User, error) {
 	creator := creatorModel.NewCreator(db, creatorDTO)
 	result := db.First(&creator, "email = ?", creator.Email)
 	if result.RowsAffected == 0 {
 		res := db.Create(&creator)
 		if res.Error != nil {
-			return res.Error
+			return nil, res.Error
 		}
 	} else {
 		db.Save(&creator)
 	}
-	return nil
+	return creator, nil
 }

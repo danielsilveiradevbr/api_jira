@@ -6,22 +6,23 @@ import (
 	"gorm.io/gorm"
 )
 
-func Salvalabel(db *gorm.DB, labels []string) error {
+func Salvalabel(db *gorm.DB, labels []string) (*labelModel.Label, error) {
+	var label = &labelModel.Label{}
 	for _, value := range labels {
 		var labeldto = &labelDto.Label{
 			Name: value,
 		}
-		var label = labelModel.NewLabel(labeldto)
+		label = labelModel.NewLabel(labeldto)
 		result := db.First(&label, "Nome = ?", label.Nome)
 		if result.RowsAffected == 0 {
 			res := db.Create(&label)
 			if res.Error != nil {
-				return res.Error
+				return nil, res.Error
 			}
 		} else {
 			db.Save(&label)
 		}
 	}
 
-	return nil
+	return label, nil
 }

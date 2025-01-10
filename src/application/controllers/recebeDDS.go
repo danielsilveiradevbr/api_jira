@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 
@@ -30,12 +31,12 @@ func RecebeDDS(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// println(jsonDDS.)
-	err = service.SalvaDDS(jsonDDS)
+	task, err := service.SalvaDDS(jsonDDS)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(err.Error()))
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Recebido com sucesso"))
+	w.Write([]byte(fmt.Sprintf("Task criada com sucesso id %s ", task.ID)))
 }
