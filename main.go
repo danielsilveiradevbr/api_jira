@@ -7,7 +7,21 @@ import (
 	"time"
 
 	controllers "github.com/danielsilveiradevbr/api_jira/src/application/controllers"
-	model "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds"
+	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
+	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/cliente"
+	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
+	issuetypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
+	labelModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/label"
+	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
+	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
+	requerAnaliseTecnicaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerAnaliseTecnica"
+	requerDocumentacaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerDocumentacao"
+	resolutionModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/resolution"
+	skuModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sku"
+	sprintModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
+	statusModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/status"
+	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
+	userModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	service "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	u "github.com/danielsilveiradevbr/api_jira/src/utils"
@@ -54,19 +68,19 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	db.AutoMigrate(&model.Priority{})
-	db.AutoMigrate(&model.Issuetype{})
-	db.AutoMigrate(&model.Project{})
-	db.AutoMigrate(&model.User{})
-	db.AutoMigrate(&model.Sprint{})
-	db.AutoMigrate(&model.Status{})
-	db.AutoMigrate(&model.Resolution{})
-	db.AutoMigrate(&model.TipoAlteracao{})
-	db.AutoMigrate(&model.ClassificacaoRelevancia{})
-	db.AutoMigrate(&model.RequerDocumentacao{})
-	db.AutoMigrate(&model.RequerAnaliseTecnica{})
-	db.AutoMigrate(&model.Cliente{})
-	db.AutoMigrate(&model.Sku{})
-	db.AutoMigrate(&model.Label{})
-	db.AutoMigrate(&model.Complexidade{})
+	db.AutoMigrate(&priorityModel.Priority{})
+	db.AutoMigrate(&issuetypeModel.Issuetype{})
+	db.AutoMigrate(&projectModel.Project{})
+	db.AutoMigrate(&userModel.User{})
+	db.AutoMigrate(&sprintModel.Sprint{})
+	db.AutoMigrate(&statusModel.Status{})
+	db.AutoMigrate(&resolutionModel.Resolution{})
+	db.AutoMigrate(&tipoAlteracaoModel.TipoAlteracao{})
+	db.AutoMigrate(&classificacaoRelevanciaModel.ClassificacaoRelevancia{})
+	db.AutoMigrate(&requerDocumentacaoModel.RequerDocumentacao{})
+	db.AutoMigrate(&requerAnaliseTecnicaModel.RequerAnaliseTecnica{})
+	db.AutoMigrate(&clienteModel.Cliente{})
+	db.AutoMigrate(&skuModel.Sku{})
+	db.AutoMigrate(&labelModel.Label{})
+	db.AutoMigrate(&complexidadeModel.Complexidade{})
 }

@@ -2,7 +2,7 @@ package assignee
 
 import (
 	assigneeDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
-	assigneeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds"
+	assigneeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 	"gorm.io/gorm"
 )
 

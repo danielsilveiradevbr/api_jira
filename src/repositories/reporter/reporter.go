@@ -2,7 +2,7 @@ package reporter
 
 import (
 	reporterDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
-	reporterModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds"
+	reporterModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 	"gorm.io/gorm"
 )
 
