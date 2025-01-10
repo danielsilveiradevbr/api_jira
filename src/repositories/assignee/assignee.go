@@ -7,7 +7,7 @@ import (
 )
 
 func SalvaAssigned(db *gorm.DB, assigneeDTO *assigneeDTO.Assignee) error {
-	assignee := assigneeModel.NewAssignee(assigneeDTO)
+	assignee := assigneeModel.NewAssignee(db, assigneeDTO)
 	result := db.First(&assignee, "email = ?", assignee.Email)
 	if result.RowsAffected == 0 {
 		res := db.Create(&assignee)

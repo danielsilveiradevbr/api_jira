@@ -12,6 +12,10 @@ type Priority struct {
 	DESCRICAO string `gorm:"unique;not null"`
 }
 
+func (Priority) TableName() string {
+	return "prioritys"
+}
+
 func NewPriority(prioritydto *priorityDto.Priority) *Priority {
 	return &Priority{
 		ID_JIRA:   prioritydto.ID,

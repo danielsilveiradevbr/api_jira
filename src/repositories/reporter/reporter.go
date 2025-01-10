@@ -7,7 +7,7 @@ import (
 )
 
 func SalvaReporter(db *gorm.DB, reporterDTO *reporterDto.Reporter) error {
-	reporter := reporterModel.NewReporter(reporterDTO)
+	reporter := reporterModel.NewReporter(db, reporterDTO)
 	result := db.First(&reporter, "email = ?", reporter.Email)
 	if result.RowsAffected == 0 {
 		res := db.Create(&reporter)

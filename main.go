@@ -10,7 +10,7 @@ import (
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
 	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/cliente"
 	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
-	issuetypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
+	issueTypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
 	labelModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/label"
 	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
 	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
@@ -69,7 +69,7 @@ func init() {
 		panic(err)
 	}
 	db.AutoMigrate(&priorityModel.Priority{})
-	db.AutoMigrate(&issuetypeModel.Issuetype{})
+	db.AutoMigrate(&issueTypeModel.IssueType{})
 	db.AutoMigrate(&projectModel.Project{})
 	db.AutoMigrate(&userModel.User{})
 	db.AutoMigrate(&sprintModel.Sprint{})

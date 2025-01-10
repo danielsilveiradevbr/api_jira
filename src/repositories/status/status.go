@@ -1,13 +1,13 @@
 package status
 
 import (
-	statusDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	statusDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/status"
 	status "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/status"
 	statusCategoryRep "github.com/danielsilveiradevbr/api_jira/src/repositories/statusCategory"
 	"gorm.io/gorm"
 )
 
-func SalvaStatus(db *gorm.DB, statusDTO *statusDTO.Status) error {
+func SalvaStatus(db *gorm.DB, statusDTO *statusDto.Status) error {
 	statusCategory, err := statusCategoryRep.SalvaStatusCategory(db, &statusDTO.StatusCategory)
 	if err != nil {
 		return err

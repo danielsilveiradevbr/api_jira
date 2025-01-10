@@ -7,7 +7,7 @@ import (
 )
 
 func SalvaCreator(db *gorm.DB, creatorDTO *creatorDto.Creator) error {
-	creator := creatorModel.NewCreator(creatorDTO)
+	creator := creatorModel.NewCreator(db, creatorDTO)
 	result := db.First(&creator, "email = ?", creator.Email)
 	if result.RowsAffected == 0 {
 		res := db.Create(&creator)

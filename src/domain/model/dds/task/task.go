@@ -5,7 +5,7 @@ import (
 
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
 	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
-	issuetypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
+	issueTypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
 	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
 	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
 	requerAnaliseTecnicaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerAnaliseTecnica"
@@ -44,7 +44,7 @@ type TASK struct {
 	ReporterId                       int64
 	Reporter                         userModel.User
 	IssuetypeId                      int64
-	Issuetype                        issuetypeModel.Issuetype
+	IssueType                        issueTypeModel.IssueType
 	ProjectId                        int64
 	Project                          projectModel.Project
 	Update                           time.Time
