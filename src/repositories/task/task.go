@@ -1,11 +1,11 @@
 package task
 
 import (
-	taskDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issues"
 	"gorm.io/gorm"
 )
 
-func SalvaTask(db *gorm.DB, taskDTO *taskDTO.Issues) error {
+func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) error {
 	// if project, err := project.SalvaProject(db, &taskDTO.Fields.Project); err != nil {
 	// 	return err
 	// }

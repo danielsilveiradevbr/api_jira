@@ -1,7 +1,7 @@
 package statusCategoryModel
 
 import (
-	statusCategoryDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	statusCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/statusCategory"
 	"gorm.io/gorm"
 )
 
@@ -13,7 +13,7 @@ type StatusCategory struct {
 	Key       string
 }
 
-func NewStatusCategory(statusCategoryDTO *statusCategoryDTO.StatusCategory) *StatusCategory {
+func NewStatusCategory(statusCategoryDTO *statusCategoryDto.StatusCategory) *StatusCategory {
 	return &StatusCategory{
 		Nome:      statusCategoryDTO.Name,
 		ColorName: statusCategoryDTO.ColorName,

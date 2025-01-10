@@ -1,7 +1,7 @@
 package labelModel
 
 import (
-	labelDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	labelDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/label"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +11,7 @@ type Label struct {
 	Nome string `gorm:"unique;not null"`
 }
 
-func NewLabel(labeldto *labelDTO.Label) *Label {
+func NewLabel(labeldto *labelDto.Label) *Label {
 	var label = &Label{
 		Nome: labeldto.Name,
 	}

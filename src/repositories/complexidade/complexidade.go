@@ -1,12 +1,12 @@
 package complexidade
 
 import (
-	complexidadeDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/complexidade"
 	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
 	"gorm.io/gorm"
 )
 
-func SalvaComplexidade(db *gorm.DB, complexidadeDTO *complexidadeDTO.Complexidade) error {
+func SalvaComplexidade(db *gorm.DB, complexidadeDTO *complexidadeDto.Complexidade) error {
 	complexidade := complexidadeModel.NewComplexidade(complexidadeDTO)
 	result := db.First(&complexidade, "codigo = ?", complexidade.Codigo)
 	if result.RowsAffected == 0 {

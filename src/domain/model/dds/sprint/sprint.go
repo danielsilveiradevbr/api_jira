@@ -3,7 +3,7 @@ package sprintModel
 import (
 	"time"
 
-	sprintdto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sprint"
 	"gorm.io/gorm"
 )
 
@@ -18,8 +18,7 @@ type Sprint struct {
 	END_DATE      time.Time
 }
 
-func NewSprint(sprintdto *sprintdto.Sprint) *Sprint {
-
+func NewSprint(sprintdto *sprintDto.Sprint) *Sprint {
 	return &Sprint{
 		ID_JIRA:       sprintdto.ID_JIRA,
 		STATUS:        sprintdto.State,

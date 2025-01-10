@@ -1,7 +1,7 @@
 package requerAnaliseTecnicaModel
 
 import (
-	requerAnaliseTecnicaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	requerAnaliseTecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerAnaliseTecnica"
 	"gorm.io/gorm"
 )
 
@@ -13,7 +13,7 @@ type RequerAnaliseTecnica struct {
 	Disabled bool
 }
 
-func NewRequerAnaliseTecnica(requerAnaliseTecnicaDTO *requerAnaliseTecnicaDTO.RequerAnaliseTecnica) *RequerAnaliseTecnica {
+func NewRequerAnaliseTecnica(requerAnaliseTecnicaDTO *requerAnaliseTecnicaDto.RequerAnaliseTecnica) *RequerAnaliseTecnica {
 	return &RequerAnaliseTecnica{
 		Self:     requerAnaliseTecnicaDTO.Self,
 		Value:    requerAnaliseTecnicaDTO.Value,

@@ -1,7 +1,9 @@
 package userModel
 
 import (
-	userDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	assineeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/assineee"
+	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/creator"
+	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/reporter"
 	"gorm.io/gorm"
 )
 
@@ -31,7 +33,7 @@ func newUser(key, emailAddress, one6X16, two4x24, three2X32, four8X48, displayNa
 	}
 }
 
-func NewAssignee(assignee *userDto.Assignee) *User {
+func NewAssignee(assignee *assineeDto.Assignee) *User {
 	return newUser(
 		assignee.Key,
 		assignee.EmailAddress,
@@ -44,7 +46,7 @@ func NewAssignee(assignee *userDto.Assignee) *User {
 	)
 }
 
-func NewReporter(reporter *userDto.Reporter) *User {
+func NewReporter(reporter *reporterDto.Reporter) *User {
 	return newUser(
 		reporter.Key,
 		reporter.EmailAddress,
@@ -57,7 +59,7 @@ func NewReporter(reporter *userDto.Reporter) *User {
 	)
 }
 
-func NewCreator(creator *userDto.Creator) *User {
+func NewCreator(creator *creatorDto.Creator) *User {
 	return newUser(
 		creator.Key,
 		creator.EmailAddress,

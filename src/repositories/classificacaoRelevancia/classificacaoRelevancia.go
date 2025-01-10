@@ -1,12 +1,12 @@
 package classificacaoRelevancia
 
 import (
-	classificacaoRelevanciaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	classificacaoRelevanciaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/classificacaorelevancia"
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
 	"gorm.io/gorm"
 )
 
-func SalvaclassificacaoRelevancia(db *gorm.DB, classificacaoRelevanciaDTO *classificacaoRelevanciaDTO.ClassificacaoRelevancia) error {
+func SalvaclassificacaoRelevancia(db *gorm.DB, classificacaoRelevanciaDTO *classificacaoRelevanciaDto.ClassificacaoRelevancia) error {
 
 	classificacaoRelevancia := classificacaoRelevanciaModel.NewClassificacaoRelevancia(classificacaoRelevanciaDTO)
 	result := db.First(&classificacaoRelevancia, "value = ?", classificacaoRelevancia.Value)

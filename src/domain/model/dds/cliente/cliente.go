@@ -1,7 +1,7 @@
 package clienteModel
 
 import (
-	clienteDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	clienteDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/cliente"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +11,7 @@ type Cliente struct {
 	Nome string `gorm:"unique;not null"`
 }
 
-func NewCliente(clientedto *clienteDTO.Cliente) *Cliente {
+func NewCliente(clientedto *clienteDto.Cliente) *Cliente {
 	var cliente = &Cliente{
 		Nome: clientedto.Name,
 	}

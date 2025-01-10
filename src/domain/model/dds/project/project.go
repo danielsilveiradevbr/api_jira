@@ -1,7 +1,8 @@
 package projectModel
 
 import (
-	project "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
+
 	projectCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/projectCategory"
 	"gorm.io/gorm"
 )
@@ -21,7 +22,7 @@ type Project struct {
 	ProjectCategory   projectCategoryModel.ProjectCategory
 }
 
-func NewProject(projetodto *project.Project) *Project {
+func NewProject(projetodto *projectDto.Project) *Project {
 	return &Project{
 		ID_JIRA:        projetodto.ID,
 		KEY_JIRA:       projetodto.Key,

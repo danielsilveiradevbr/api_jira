@@ -9,7 +9,7 @@ import (
 
 	"encoding/json"
 
-	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
 	"github.com/joho/godotenv"
 )
 

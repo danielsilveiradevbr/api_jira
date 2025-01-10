@@ -1,12 +1,12 @@
 package ddsservice
 
 import (
-	jsonDDS "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	jsonDdsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/task"
 )
 
-func SalvaDDS(DDSJson *jsonDDS.JsonDDS) error {
+func SalvaDDS(DDSJson *jsonDdsDto.JsonDDS) error {
 	db, err := b.ConnectToPG()
 	if err != nil {
 		return err

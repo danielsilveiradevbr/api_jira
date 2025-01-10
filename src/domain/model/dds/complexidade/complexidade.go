@@ -1,7 +1,7 @@
 package complexidadeModel
 
 import (
-	complexidadeDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/complexidade"
 	"gorm.io/gorm"
 )
 
@@ -12,7 +12,7 @@ type Complexidade struct {
 	Codigo string
 }
 
-func NewComplexidade(complexidadeDTO *complexidadeDTO.Complexidade) *Complexidade {
+func NewComplexidade(complexidadeDTO *complexidadeDto.Complexidade) *Complexidade {
 	var nome = "Baixa"
 	if complexidadeDTO.Codigo == "2" {
 		nome = "Média"

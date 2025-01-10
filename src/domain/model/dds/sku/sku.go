@@ -1,7 +1,7 @@
 package skuModel
 
 import (
-	skuDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	skuDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sku"
 	"gorm.io/gorm"
 )
 
@@ -11,7 +11,7 @@ type Sku struct {
 	Nome string `gorm:"unique;not null"`
 }
 
-func NewSku(skuDTO *skuDTO.Sku) *Sku {
+func NewSku(skuDTO *skuDto.Sku) *Sku {
 	var sku = &Sku{
 		Nome: skuDTO.Name,
 	}

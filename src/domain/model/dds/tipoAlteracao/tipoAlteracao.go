@@ -1,7 +1,7 @@
 package tipoAlteracaoModel
 
 import (
-	tipoAlteracaoDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	tipoAlteracaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/tipoAlteracao"
 	"gorm.io/gorm"
 )
 
@@ -17,7 +17,7 @@ func (TipoAlteracao) TableName() string {
 	return "tipo_alteracoes"
 }
 
-func NewTipoAlteracao(tipoAlteracaoDTO *tipoAlteracaoDTO.TipoAlteracao) *TipoAlteracao {
+func NewTipoAlteracao(tipoAlteracaoDTO *tipoAlteracaoDto.TipoAlteracao) *TipoAlteracao {
 	return &TipoAlteracao{
 		Self:     tipoAlteracaoDTO.Self,
 		Value:    tipoAlteracaoDTO.Value,

@@ -1,7 +1,7 @@
 package requerDocumentacaoModel
 
 import (
-	requerDocumentacaoDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	requerDocumentacaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerDocumentacao"
 	"gorm.io/gorm"
 )
 
@@ -17,7 +17,7 @@ func (RequerDocumentacao) TableName() string {
 	return "requer_documentacoes"
 }
 
-func NewRequerDocumentacao(requerDocumentacaoDTO *requerDocumentacaoDTO.RequerDocumentacao) *RequerDocumentacao {
+func NewRequerDocumentacao(requerDocumentacaoDTO *requerDocumentacaoDto.RequerDocumentacao) *RequerDocumentacao {
 	return &RequerDocumentacao{
 		Self:     requerDocumentacaoDTO.Self,
 		Value:    requerDocumentacaoDTO.Value,

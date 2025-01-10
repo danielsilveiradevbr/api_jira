@@ -1,7 +1,7 @@
 package priorityModel
 
 import (
-	priority "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/priority"
 	"gorm.io/gorm"
 )
 
@@ -12,7 +12,7 @@ type Priority struct {
 	DESCRICAO string `gorm:"unique;not null"`
 }
 
-func NewPriority(prioritydto *priority.Priority) *Priority {
+func NewPriority(prioritydto *priorityDto.Priority) *Priority {
 	return &Priority{
 		ID_JIRA:   prioritydto.ID,
 		DESCRICAO: prioritydto.Name,

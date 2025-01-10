@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 
-	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	jsonDdsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
 	service "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	"github.com/joho/godotenv"
 )
@@ -21,7 +21,7 @@ func RecebeDDS(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
-	var jsonDDS *dds.JsonDDS
+	var jsonDDS *jsonDdsDto.JsonDDS
 
 	err = json.Unmarshal(res, &jsonDDS)
 	if err != nil {

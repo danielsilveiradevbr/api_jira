@@ -1,7 +1,7 @@
 package statusModel
 
 import (
-	statusDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	statusDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/status"
 	statusCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/statusCategory"
 	"gorm.io/gorm"
 )
@@ -19,7 +19,7 @@ func (Status) TableName() string {
 	return "status"
 }
 
-func NewStatus(status *statusDTO.Status) *Status {
+func NewStatus(status *statusDto.Status) *Status {
 	return &Status{
 		ID_JIRA:   status.ID,
 		DESCRICAO: status.Description,

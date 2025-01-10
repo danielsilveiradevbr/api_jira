@@ -1,7 +1,7 @@
 package projectCategoryModel
 
 import (
-	projectCategoryDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	projectCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/projectCategory"
 	"gorm.io/gorm"
 )
 
@@ -12,7 +12,7 @@ type ProjectCategory struct {
 	Descricao string
 }
 
-func NewProjectCategory(projectCategoryDTO *projectCategoryDTO.ProjectCategory) *ProjectCategory {
+func NewProjectCategory(projectCategoryDTO *projectCategoryDto.ProjectCategory) *ProjectCategory {
 	return &ProjectCategory{
 		Nome:      projectCategoryDTO.Name,
 		Descricao: projectCategoryDTO.Description,

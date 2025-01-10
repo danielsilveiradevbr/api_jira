@@ -1,7 +1,7 @@
 package resolutionModel
 
 import (
-	resolutionDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto"
+	resolutionDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/resolution"
 	"gorm.io/gorm"
 )
 
@@ -13,7 +13,7 @@ type Resolution struct {
 	Name      string `gorm:"unique;not null"`
 }
 
-func NewResolution(resolutionDTO *resolutionDTO.Resolution) *Resolution {
+func NewResolution(resolutionDTO *resolutionDto.Resolution) *Resolution {
 	return &Resolution{
 		Url:       resolutionDTO.Self,
 		Descricao: resolutionDTO.Description,
