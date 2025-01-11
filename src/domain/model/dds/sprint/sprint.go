@@ -9,7 +9,7 @@ import (
 
 type Sprint struct {
 	gorm.Model
-	ID            int64 `gorm:"primaryKey;autoIncrement:true"`
+	ID            uint `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA       string
 	STATUS        string
 	NOME          string `gorm:"unique;not null"`

@@ -7,7 +7,7 @@ import (
 
 type Priority struct {
 	gorm.Model
-	ID        int64 `gorm:"primaryKey;autoIncrement:true"`
+	ID        uint `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA   string
 	DESCRICAO string `gorm:"unique;not null"`
 }

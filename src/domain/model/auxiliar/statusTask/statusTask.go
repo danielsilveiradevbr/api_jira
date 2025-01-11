@@ -7,9 +7,9 @@ import (
 
 type StatusTask struct {
 	gorm.Model
-	ID       int64 `gorm:"primaryKey;autoIncrement:true"`
-	TaskId   int64 `gorm:"primaryKey"`
-	StatusId int64 `gorm:"primaryKey"`
+	ID       uint `gorm:"primaryKey;autoIncrement:true"`
+	TaskId   uint `gorm:"primaryKey"`
+	StatusId uint `gorm:"primaryKey"`
 }
 
 func NewStatusTask(statusTaskDto *statusTaskDto.StatusTask) *StatusTask {

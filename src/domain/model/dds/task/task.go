@@ -19,10 +19,11 @@ import (
 	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
 	userModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
 	"github.com/danielsilveiradevbr/api_jira/src/utils"
+	"gorm.io/gorm"
 )
 
 type Task struct {
-	ID                               int64 `gorm:"primaryKey;autoIncrement:true"`
+	ID                               uint `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA                          string
 	KEY_JIRA                         string `gorm:"unique;not null"`
 	DESCRICAO                        string
@@ -42,29 +43,29 @@ type Task struct {
 	TARGET_END                       time.Time
 	RESOLUTION_DATE                  time.Time
 	HORAS_DEV                        float32
-	COMPLEXIDADEId                   int64
-	COMPLEXIDADE                     complexidadeModel.Complexidade
+	ComplexidadeId                   *uint
+	Complexidade                     complexidadeModel.Complexidade
 	AGGREGATE_TIME_ORIGINAL_ESTIMATE float32
-	AssineeId                        int64
+	AssineeId                        *uint
 	Assinee                          userModel.User
-	ReporterId                       int64
+	ReporterId                       *uint
 	Reporter                         userModel.User
-	IssueTypeId                      int64
+	IssueTypeId                      *uint
 	IssueType                        issueTypeModel.IssueType
-	ProjectId                        int64
+	ProjectId                        *uint
 	Project                          projectModel.Project
 	Update                           time.Time
 	CUSTOMFIELD_10105                string
-	PriorityId                       int64
+	PriorityId                       *uint
 	Priority                         priorityModel.Priority
-	SprintId                         int64
+	SprintId                         *uint
 	Sprint                           sprintModel.Sprint
 	SOLUCAO                          string
 	TIME_ESTIMATE                    float32
 	AGGREGATE_TIME_ESTIMATE          float32
-	CreatorId                        int64
+	CreatorId                        *uint
 	Creator                          userModel.User
-	RequerAnaliseTecnicaId           int64
+	RequerAnaliseTecnicaId           *uint
 	RequerAnaliseTecnica             requerAnaliseTecnicaModel.RequerAnaliseTecnica
 	CUSTOMFIELD_10434                string
 	TIMESPENT                        float32
@@ -73,26 +74,78 @@ type Task struct {
 	CUSTOMFIELD_10433                string
 	WORKRATIO                        float32
 	RESUMO_ALTERACAO                 string
-	RequerDocumentacaoId             int64
+	RequerDocumentacaoId             *uint
 	RequerDocumentacao               requerDocumentacaoModel.RequerDocumentacao
-	ClassificacaoRelevanciaId        int64
+	ClassificacaoRelevanciaId        *uint
 	ClassificacaoRelevancia          classificacaoRelevanciaModel.ClassificacaoRelevancia
-	TipoAlteracaoId                  int64
+	TipoAlteracaoId                  *uint
 	TipoAlteracao                    tipoAlteracaoModel.TipoAlteracao
 	HORAS_TEST                       float32
 	Self                             string
-	ResolutionId                     int64
+	ResolutionId                     *uint
 	Resolution                       resolutionModel.Resolution
-	ClienteId                        int64
+	ClienteId                        *uint
 	Cliente                          clienteModel.Cliente
-	SkuId                            int64
+	SkuId                            *uint
 	Sku                              skuModel.Sku
-	LabelId                          int64
+	LabelId                          *uint
 	Label                            labelModel.Label
 }
 
 func (Task) TableName() string {
 	return "tasks"
+}
+
+func (t *Task) BeforeCreate(db *gorm.DB) (err error) {
+	if *t.ProjectId == 0 {
+		t.ProjectId = nil
+	}
+	if *t.SprintId == 0 {
+		t.SprintId = nil
+	}
+	if *t.ComplexidadeId == 0 {
+		t.ComplexidadeId = nil
+	}
+	if *t.AssineeId == 0 {
+		t.AssineeId = nil
+	}
+	if *t.ReporterId == 0 {
+		t.ReporterId = nil
+	}
+	if *t.IssueTypeId == 0 {
+		t.IssueTypeId = nil
+	}
+	if *t.PriorityId == 0 {
+		t.PriorityId = nil
+	}
+	if *t.CreatorId == 0 {
+		t.CreatorId = nil
+	}
+	if *t.RequerAnaliseTecnicaId == 0 {
+		t.RequerAnaliseTecnicaId = nil
+	}
+	if *t.RequerDocumentacaoId == 0 {
+		t.RequerDocumentacaoId = nil
+	}
+	if *t.ClassificacaoRelevanciaId == 0 {
+		t.ClassificacaoRelevanciaId = nil
+	}
+	if *t.TipoAlteracaoId == 0 {
+		t.TipoAlteracaoId = nil
+	}
+	if *t.ClienteId == 0 {
+		t.ClienteId = nil
+	}
+	if *t.ResolutionId == 0 {
+		t.ResolutionId = nil
+	}
+	if *t.SkuId == 0 {
+		t.SkuId = nil
+	}
+	if *t.LabelId == 0 {
+		t.LabelId = nil
+	}
+	return nil
 }
 
 func NewTask(issuesDto *issuesDto.Issues) *Task {
@@ -127,5 +180,21 @@ func NewTask(issuesDto *issuesDto.Issues) *Task {
 		WORKRATIO:                        issuesDto.Fields.Workratio,
 		HORAS_TEST:                       issuesDto.Fields.HorasTest,
 		RESUMO_ALTERACAO:                 issuesDto.Fields.ResumoAlteracao,
+		ProjectId:                        nil,
+		SprintId:                         nil,
+		ComplexidadeId:                   nil,
+		AssineeId:                        nil,
+		ReporterId:                       nil,
+		IssueTypeId:                      nil,
+		PriorityId:                       nil,
+		CreatorId:                        nil,
+		RequerAnaliseTecnicaId:           nil,
+		RequerDocumentacaoId:             nil,
+		ClassificacaoRelevanciaId:        nil,
+		TipoAlteracaoId:                  nil,
+		ResolutionId:                     nil,
+		ClienteId:                        nil,
+		SkuId:                            nil,
+		LabelId:                          nil,
 	}
 }

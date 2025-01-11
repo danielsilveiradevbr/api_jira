@@ -7,9 +7,9 @@ import (
 
 type ProgressTask struct {
 	gorm.Model
-	ID         int64 `gorm:"primaryKey;autoIncrement:true"`
-	TaskId     int64 `gorm:"primaryKey"`
-	ProgressId int64 `gorm:"primaryKey"`
+	ID         uint `gorm:"primaryKey;autoIncrement:true"`
+	TaskId     uint `gorm:"primaryKey"`
+	ProgressId uint `gorm:"primaryKey"`
 }
 
 func NewProgressTask(progressTaskDto *progressTaskDto.ProgressTask) *ProgressTask {

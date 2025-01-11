@@ -60,15 +60,44 @@ func AtualizaDDS() {
 		if err != nil {
 			panic(err)
 		}
-		if hora.Hour() == 15 { //} && hora.Minute() == 59 && hora.Second() == 0 {
+		if hora.Hour() == 19 { //} && hora.Minute() == 59 && hora.Second() == 0 {
 			var sprints []sprintModel.Sprint
-			db.Where("status = ?", "ACTIVE").Find(&sprints)
-			for _, v := range sprints {
-				fmt.Println(v.ID_JIRA)
-				jsonJira, err := controllers.AtualizaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
-				if err != nil {
+			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
+			if len(sprints) > 0 {
+				for _, v := range sprints {
+					jsonJira, err := controllers.AtualizaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
+					if err != nil {
+						panic(err)
+					}
+					if jsonJira.Total > 0 {
+						service.SalvaDDS(db, jsonJira)
+					}
+
+				}
+			} else {
+				ind := 0
+				for {
+					ind = ind + 1
+					jsonJira, err := controllers.AtualizaDDS(fmt.Sprintf(" sprint = %d", ind))
+					if err != nil {
+						if err.Error() != "Sprint with id 11 does not exist or you do not have permission to view it." {
+							panic(err)
+						}
+					}
+					if jsonJira.Total > 0 {
+						service.SalvaDDS(db, jsonJira)
+					}
+				}
+
+			}
+
+			jsonJira, err := controllers.AtualizaDDS("sprint in (openSprints())")
+			if err != nil {
+				if err.Error() != "Sprint with id 11 does not exist or you do not have permission to view it." {
 					panic(err)
 				}
+			}
+			if jsonJira.Total > 0 {
 				service.SalvaDDS(db, jsonJira)
 			}
 		}

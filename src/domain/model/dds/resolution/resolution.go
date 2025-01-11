@@ -7,7 +7,7 @@ import (
 
 type Resolution struct {
 	gorm.Model
-	ID        int64 `gorm:"primaryKey;autoIncrement:true"`
+	ID        uint `gorm:"primaryKey;autoIncrement:true"`
 	Url       string
 	Descricao string
 	Name      string `gorm:"unique;not null"`

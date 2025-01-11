@@ -45,7 +45,9 @@ func AtualizaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("Response status:", resp.Status)
+	if os.Getenv("DEBUGANDO") == "T" {
+		fmt.Println("Response status:", resp.Status)
+	}
 	defer resp.Body.Close()
 	res, err := io.ReadAll(resp.Body)
 	if err != nil {

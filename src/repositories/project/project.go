@@ -13,7 +13,7 @@ func SalvaProject(db *gorm.DB, projetoDTO *projectDto.Project) (*projectModel.Pr
 		return nil, err
 	}
 	projeto := projectModel.NewProject(projetoDTO)
-	projeto.ProjectCategoryID = projectCategory.ID
+	projeto.ProjectCategoryID = &projectCategory.ID
 	result := db.First(&projeto, "descricao = ?", projeto.DESCRICAO)
 	if result.RowsAffected == 0 {
 		res := db.Create(&projeto)

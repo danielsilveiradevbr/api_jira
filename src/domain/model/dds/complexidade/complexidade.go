@@ -7,7 +7,7 @@ import (
 
 type Complexidade struct {
 	gorm.Model
-	ID     int64  `gorm:"primaryKey;autoIncrement:true"`
+	ID     uint   `gorm:"primaryKey;autoIncrement:true"`
 	Nome   string `gorm:"unique;not null;not null"`
 	Codigo string
 }

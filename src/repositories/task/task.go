@@ -107,23 +107,23 @@ func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) (*taskModel.Task, error) 
 		return nil, err
 	}
 	task := taskModel.NewTask(taskDTO)
-	task.ProjectId = project.ID
-	task.SprintId = sprint.ID
+	task.ProjectId = &project.ID
+	task.SprintId = &sprint.ID
 	task.TIPO = project.KEY_JIRA
-	task.COMPLEXIDADEId = complexidade.ID
-	task.AssineeId = assignee.ID
-	task.ReporterId = reporter.ID
-	task.IssueTypeId = issueType.ID
-	task.PriorityId = priority.ID
-	task.CreatorId = creator.ID
-	task.RequerAnaliseTecnicaId = requerAnaliseTecnica.Id
-	task.RequerDocumentacaoId = requerDocumentacao.Id
-	task.ClassificacaoRelevanciaId = classificacaoRelevancia.Id
-	task.TipoAlteracaoId = tipoAlteracao.Id
-	task.ResolutionId = resolution.ID
-	task.ClienteId = cliente.ID
-	task.SkuId = sku.ID
-	task.LabelId = label.ID
+	task.ComplexidadeId = &complexidade.ID
+	task.AssineeId = &assignee.ID
+	task.ReporterId = &reporter.ID
+	task.IssueTypeId = &issueType.ID
+	task.PriorityId = &priority.ID
+	task.CreatorId = &creator.ID
+	task.RequerAnaliseTecnicaId = &requerAnaliseTecnica.Id
+	task.RequerDocumentacaoId = &requerDocumentacao.Id
+	task.ClassificacaoRelevanciaId = &classificacaoRelevancia.Id
+	task.TipoAlteracaoId = &tipoAlteracao.Id
+	task.ResolutionId = &resolution.ID
+	task.ClienteId = &cliente.ID
+	task.SkuId = &sku.ID
+	task.LabelId = &label.ID
 	result := db.First(&task, "key_jira = ?", task.KEY_JIRA)
 	if result.RowsAffected == 0 {
 		res := db.Create(&task)

@@ -7,7 +7,7 @@ import (
 
 type ClassificacaoRelevancia struct {
 	gorm.Model
-	Id       int64 `gorm:"primaryKey;autoIncrement:true"`
+	Id       uint `gorm:"primaryKey;autoIncrement:true"`
 	Self     string
 	Value    string `gorm:"unique;not null"`
 	Disabled bool

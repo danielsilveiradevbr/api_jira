@@ -7,7 +7,7 @@ import (
 
 type Cliente struct {
 	gorm.Model
-	ID   int64  `gorm:"primaryKey;autoIncrement:true"`
+	ID   uint   `gorm:"primaryKey;autoIncrement:true"`
 	Nome string `gorm:"unique;not null"`
 }
 

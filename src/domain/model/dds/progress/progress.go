@@ -7,7 +7,7 @@ import (
 
 type Progress struct {
 	gorm.Model
-	ID       int64 `gorm:"primaryKey;autoIncrement:true"`
+	ID       uint `gorm:"primaryKey;autoIncrement:true"`
 	Progress int
 	Total    int
 	Percent  float32

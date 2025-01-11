@@ -12,7 +12,7 @@ import (
 
 type User struct {
 	gorm.Model
-	ID           int64 `gorm:"primaryKey;autoIncrement:true"`
+	ID           uint `gorm:"primaryKey;autoIncrement:true"`
 	KEY_JIRA     string
 	Email        string `gorm:"unique;not null"`
 	Avatar_16x16 string
@@ -21,8 +21,15 @@ type User struct {
 	Avatar_48x48 string
 	Nome         string
 	DisplayName  string
-	TipoUserId   int64
+	TipoUserId   *uint
 	TipoUser     tipoUserModel.TipoUser
+}
+
+func (u *User) BeforeCreate(db *gorm.DB) (err error) {
+	if *u.TipoUserId == 0 {
+		u.TipoUserId = nil
+	}
+	return nil
 }
 
 func newUser(db *gorm.DB, key, emailAddress, one6X16, two4x24, three2X32, four8X48, displayName, name string, tipoDeUser int) *User {
@@ -48,7 +55,7 @@ func newUser(db *gorm.DB, key, emailAddress, one6X16, two4x24, three2X32, four8X
 		Avatar_48x48: four8X48,
 		DisplayName:  displayName,
 		Nome:         name,
-		TipoUserId:   tipoUser.ID,
+		TipoUserId:   &tipoUser.ID,
 	}
 }
 

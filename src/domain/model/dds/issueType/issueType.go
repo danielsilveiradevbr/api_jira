@@ -7,7 +7,7 @@ import (
 
 type IssueType struct {
 	gorm.Model
-	ID   int64  `gorm:"primaryKey;autoIncrement:true"`
+	ID   uint   `gorm:"primaryKey;autoIncrement:true"`
 	NOME string `gorm:"unique;not null"`
 }
 
