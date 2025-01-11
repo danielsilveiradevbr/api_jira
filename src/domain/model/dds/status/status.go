@@ -10,7 +10,8 @@ type Status struct {
 	gorm.Model
 	ID               int64 `gorm:"primaryKey;autoIncrement:true"`
 	ID_JIRA          string
-	DESCRICAO        string `gorm:"unique;not null"`
+	DESCRICAO        string
+	Nome             string `gorm:"unique;not null"`
 	StatusCategoryId int64
 	StatusCategory   statusCategoryModel.StatusCategory
 }
@@ -23,5 +24,6 @@ func NewStatus(status *statusDto.Status) *Status {
 	return &Status{
 		ID_JIRA:   status.ID,
 		DESCRICAO: status.Description,
+		Nome:      status.Name,
 	}
 }

@@ -4,6 +4,8 @@ import (
 	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issues"
 	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/auxiliares/progressTask"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/auxiliares/statusTask"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/classificacaoRelevancia"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/cliente"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/complexidade"
@@ -11,6 +13,7 @@ import (
 	issuetype "github.com/danielsilveiradevbr/api_jira/src/repositories/issueType"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/label"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/priority"
+	"github.com/danielsilveiradevbr/api_jira/src/repositories/progress"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/project"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/reporter"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/requerAnaliseTecnica"
@@ -18,7 +21,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/resolution"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sku"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/sprint"
-	"github.com/danielsilveiradevbr/api_jira/src/repositories/status"
+	status "github.com/danielsilveiradevbr/api_jira/src/repositories/status"
 	tipoalteracao "github.com/danielsilveiradevbr/api_jira/src/repositories/tipoAlteracao"
 	"gorm.io/gorm"
 )
@@ -55,11 +58,6 @@ func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) (*taskModel.Task, error) 
 	}
 
 	priority, err := priority.SalvaPriority(db, &taskDTO.Fields.Priority)
-	if err != nil {
-		return nil, err
-	}
-
-	_, err = status.SalvaStatus(db, &taskDTO.Fields.Status)
 	if err != nil {
 		return nil, err
 	}
@@ -111,9 +109,6 @@ func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) (*taskModel.Task, error) 
 	task := taskModel.NewTask(taskDTO)
 	task.ProjectId = project.ID
 	task.SprintId = sprint.ID
-	// task.PROGRES_TOTAL = 0,
-	// task.PROGRESS = 0,
-	// task.PERC_PROGRESS = 0,
 	task.TIPO = project.KEY_JIRA
 	task.COMPLEXIDADEId = complexidade.ID
 	task.AssineeId = assignee.ID
@@ -138,5 +133,26 @@ func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) (*taskModel.Task, error) 
 	} else {
 		db.Save(&task)
 	}
+
+	status, err := status.SalvaStatus(db, &taskDTO.Fields.Status)
+	if err != nil {
+		return nil, err
+	}
+
+	err = statusTask.SalvaStatusTask(db, status, task)
+	if err != nil {
+		return nil, err
+	}
+
+	progress, err := progress.SalvaProgress(db, &taskDTO.Fields.Progress)
+	if err != nil {
+		return nil, err
+	}
+
+	err = progressTask.SalvaProgressTask(db, progress, task)
+	if err != nil {
+		return nil, err
+	}
+
 	return task, nil
 }

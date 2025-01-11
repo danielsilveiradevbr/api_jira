@@ -7,12 +7,15 @@ import (
 	"time"
 
 	controllers "github.com/danielsilveiradevbr/api_jira/src/application/controllers"
+	progressTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/progressTask"
+	statusTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/statusTask"
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
 	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/cliente"
 	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
 	issueTypeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/issueType"
 	labelModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/label"
 	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
+	progressModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/progress"
 	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
 	requerAnaliseTecnicaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerAnaliseTecnica"
 	requerDocumentacaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerDocumentacao"
@@ -85,4 +88,7 @@ func init() {
 	db.AutoMigrate(&labelModel.Label{})
 	db.AutoMigrate(&complexidadeModel.Complexidade{})
 	db.AutoMigrate(&taskModel.Task{})
+	db.AutoMigrate(&statusTaskModel.StatusTask{})
+	db.AutoMigrate(&progressModel.Progress{})
+	db.AutoMigrate(&progressTaskModel.ProgressTask{})
 }

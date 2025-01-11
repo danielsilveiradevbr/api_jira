@@ -7,7 +7,6 @@ import (
 )
 
 func SalvaResolution(db *gorm.DB, resolutionDTO *resolutionDto.Resolution) (*resolutionModel.Resolution, error) {
-
 	resolution := resolutionModel.NewResolution(resolutionDTO)
 	result := db.First(&resolution, "name = ?", resolution.Name)
 	if result.RowsAffected == 0 {

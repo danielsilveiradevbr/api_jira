@@ -1,10 +1,20 @@
 package progressTaskModel
 
-import "gorm.io/gorm"
+import (
+	progressTaskDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/progressTask"
+	"gorm.io/gorm"
+)
 
 type ProgressTask struct {
 	gorm.Model
 	ID        int64 `gorm:"primaryKey;autoIncrement:true"`
-	TaskId    int
-	ProgresId int
+	TaskId    int64 `gorm:"primaryKey"`
+	ProgresId int64 `gorm:"primaryKey"`
+}
+
+func NewProgressTask(progressTaskDto *progressTaskDto.ProgressTask) *ProgressTask {
+	return &ProgressTask{
+		TaskId:    progressTaskDto.TaskId,
+		ProgresId: progressTaskDto.ProgresId,
+	}
 }

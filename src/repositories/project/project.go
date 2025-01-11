@@ -2,19 +2,17 @@ package project
 
 import (
 	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
-	project "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
+	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
 	projectCategoryRep "github.com/danielsilveiradevbr/api_jira/src/repositories/projectCategory"
 	"gorm.io/gorm"
 )
 
 func SalvaProject(db *gorm.DB, projetoDTO *projectDto.Project) (*project.Project, error) {
-
 	projectCategory, err := projectCategoryRep.SalvaProjectCategory(db, &projetoDTO.ProjectCategory)
 	if err != nil {
 		return nil, err
 	}
-
-	projeto := project.NewProject(projetoDTO)
+	projeto := projectModel.NewProject(projetoDTO)
 	projeto.ProjectCategoryID = projectCategory.ID
 	result := db.First(&projeto, "descricao = ?", projeto.DESCRICAO)
 	if result.RowsAffected == 0 {

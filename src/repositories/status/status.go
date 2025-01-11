@@ -14,7 +14,7 @@ func SalvaStatus(db *gorm.DB, statusDTO *statusDto.Status) (*statusModel.Status,
 	}
 	status := statusModel.NewStatus(statusDTO)
 	status.StatusCategoryId = statusCategory.ID
-	result := db.First(&status, "descricao = ?", status.DESCRICAO)
+	result := db.First(&status, "nome = ?", status.Nome)
 	if result.RowsAffected == 0 {
 		res := db.Create(&status)
 		if res.Error != nil {

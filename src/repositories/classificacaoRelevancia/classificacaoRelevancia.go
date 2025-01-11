@@ -7,7 +7,6 @@ import (
 )
 
 func SalvaClassificacaoRelevancia(db *gorm.DB, classificacaoRelevanciaDTO *classificacaoRelevanciaDto.ClassificacaoRelevancia) (*classificacaoRelevanciaModel.ClassificacaoRelevancia, error) {
-
 	classificacaoRelevancia := classificacaoRelevanciaModel.NewClassificacaoRelevancia(classificacaoRelevanciaDTO)
 	result := db.First(&classificacaoRelevancia, "value = ?", classificacaoRelevancia.Value)
 	if result.RowsAffected == 0 {

@@ -7,7 +7,6 @@ import (
 )
 
 func SalvaTipoAlteracao(db *gorm.DB, tipoAlteracaoDTO *tipoAlteracaoDto.TipoAlteracao) (*tipoAlteracaoModel.TipoAlteracao, error) {
-
 	tipoAlteracao := tipoAlteracaoModel.NewTipoAlteracao(tipoAlteracaoDTO)
 	result := db.First(&tipoAlteracao, "value = ?", tipoAlteracao.Value)
 	if result.RowsAffected == 0 {

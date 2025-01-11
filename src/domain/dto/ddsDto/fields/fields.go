@@ -7,6 +7,7 @@ import (
 	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/creator"
 	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issueType"
 	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/priority"
+	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/progress"
 	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
 	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/reporter"
 	requerAnalisetecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerAnaliseTecnica"
@@ -63,7 +64,7 @@ type Fields struct {
 	// Customfield13306              any               `json:"customfield_13306"`
 	// Customfield13305              any               `json:"customfield_13305"`
 	// Customfield10712              any               `json:"customfield_10712"`
-	// Progress                      Progress          `json:"progress"`
+	Progress progressDto.Progress `json:"progress"`
 	// Votes                         Votes             `json:"votes"`
 	Issuetype issueTypeDto.Issuetype `json:"issuetype"`
 	Project   projectDto.Project     `json:"project"`

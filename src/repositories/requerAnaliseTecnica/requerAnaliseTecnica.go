@@ -7,7 +7,6 @@ import (
 )
 
 func SalvaRequerAnaliseTecnica(db *gorm.DB, requerAnaliseTecnicaDTO *requerAnaliseTecnicaDto.RequerAnaliseTecnica) (*requerAnaliseTecnicaModel.RequerAnaliseTecnica, error) {
-
 	requerAnaliseTecnica := requerAnaliseTecnicaModel.NewRequerAnaliseTecnica(requerAnaliseTecnicaDTO)
 	result := db.First(&requerAnaliseTecnica, "value = ?", requerAnaliseTecnica.Value)
 	if result.RowsAffected == 0 {

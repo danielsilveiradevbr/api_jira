@@ -7,7 +7,6 @@ import (
 )
 
 func SalvaRequerDocumentacao(db *gorm.DB, requerDocumentacaoDTO *requerDocumentacaoDto.RequerDocumentacao) (*requerDocumentacaoModel.RequerDocumentacao, error) {
-
 	requerDocumentacao := requerDocumentacaoModel.NewRequerDocumentacao(requerDocumentacaoDTO)
 	result := db.First(&requerDocumentacao, "value = ?", requerDocumentacao.Value)
 	if result.RowsAffected == 0 {
