@@ -8,7 +8,7 @@ import (
 
 func SalvaProgress(db *gorm.DB, progressDTO *progressDto.Progress) (*progressModel.Progress, error) {
 	progress := progressModel.NewProgress(progressDTO)
-	result := db.First(&progress, "progress = ? and total = ? percent = ?", progress.Progress, progress.Total, progress.Percent)
+	result := db.First(&progress, "progress = ? and total = ? and percent = ?", progress.Progress, progress.Total, progress.Percent)
 	if result.RowsAffected == 0 {
 		res := db.Create(&progress)
 		if res.Error != nil {

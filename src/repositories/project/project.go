@@ -7,7 +7,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func SalvaProject(db *gorm.DB, projetoDTO *projectDto.Project) (*project.Project, error) {
+func SalvaProject(db *gorm.DB, projetoDTO *projectDto.Project) (*projectModel.Project, error) {
 	projectCategory, err := projectCategoryRep.SalvaProjectCategory(db, &projetoDTO.ProjectCategory)
 	if err != nil {
 		return nil, err

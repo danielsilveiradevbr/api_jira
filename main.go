@@ -56,12 +56,21 @@ func AtualizaDDS() {
 	for {
 		hora := u.GetADateTimeSaoPaulo()
 		fmt.Println(hora)
-		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
-			jsonJira, err := controllers.AtualizaDDS()
-			if err != nil {
-				panic(err)
+		db, err := b.ConnectToPG()
+		if err != nil {
+			panic(err)
+		}
+		if hora.Hour() == 15 { //} && hora.Minute() == 59 && hora.Second() == 0 {
+			var sprints []sprintModel.Sprint
+			db.Where("status = ?", "ACTIVE").Find(&sprints)
+			for _, v := range sprints {
+				fmt.Println(v.ID_JIRA)
+				jsonJira, err := controllers.AtualizaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
+				if err != nil {
+					panic(err)
+				}
+				service.SalvaDDS(db, jsonJira)
 			}
-			service.SalvaDDS(jsonJira)
 		}
 		time.Sleep(time.Minute)
 	}

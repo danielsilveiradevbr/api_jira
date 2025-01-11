@@ -14,7 +14,7 @@ func SalvaStatusTask(db *gorm.DB, status *statusModel.Status, task *taskModel.Ta
 		StatusId: status.ID,
 	}
 	statusTaskModel := statusTaskModel.NewStatusTask(statusTaskDto)
-	result := db.First(&statusTaskModel, "taskId = ? and statusId = ?", statusTaskModel.TaskId, statusTaskModel.StatusId)
+	result := db.First(&statusTaskModel, "task_id = ? and status_id = ?", statusTaskModel.TaskId, statusTaskModel.StatusId)
 	if result.RowsAffected == 0 {
 		res := db.Create(&statusTaskModel)
 		if res.Error != nil {

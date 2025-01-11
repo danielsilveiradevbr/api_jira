@@ -10,11 +10,11 @@ import (
 
 func SalvaProgressTask(db *gorm.DB, progress *progressModel.Progress, task *taskModel.Task) error {
 	progressTaskDto := &progressTaskDto.ProgressTask{
-		TaskId:    task.ID,
-		ProgresId: progress.ID,
+		TaskId:     task.ID,
+		ProgressId: progress.ID,
 	}
 	progressTaskModel := progressTaskModel.NewProgressTask(progressTaskDto)
-	result := db.First(&progressTaskModel, "taskId = ? and progressId = ?", progressTaskModel.TaskId, progressTaskModel.ProgresId)
+	result := db.First(&progressTaskModel, "task_id = ? and progress_id = ?", progressTaskModel.TaskId, progressTaskModel.ProgressId)
 	if result.RowsAffected == 0 {
 		res := db.Create(&progressTaskModel)
 		if res.Error != nil {

@@ -13,7 +13,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func AtualizaDDS() (*dds.JsonDDS, error) {
+func AtualizaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
 
 	err := godotenv.Load()
 	if err != nil {
@@ -26,7 +26,7 @@ func AtualizaDDS() (*dds.JsonDDS, error) {
 	}
 
 	body, _ := json.Marshal(map[string]string{
-		"jql": "project = \"Desenvolvimento de Software\" AND Sprint = 75",
+		"jql": "project = \"Desenvolvimento de Software\" AND " + sprintFiltro,
 	})
 
 	payload := bytes.NewBuffer(body)

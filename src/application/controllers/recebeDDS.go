@@ -7,12 +7,17 @@ import (
 	"net/http"
 
 	jsonDdsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
+	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	service "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	"github.com/joho/godotenv"
 )
 
 func RecebeDDS(w http.ResponseWriter, r *http.Request) {
 	err := godotenv.Load()
+	if err != nil {
+		w.Write([]byte(err.Error()))
+	}
+	db, err := b.ConnectToPG()
 	if err != nil {
 		w.Write([]byte(err.Error()))
 	}
@@ -31,7 +36,7 @@ func RecebeDDS(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// println(jsonDDS.)
-	task, err := service.SalvaDDS(jsonDDS)
+	task, err := service.SalvaDDS(db, jsonDDS)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(err.Error()))
