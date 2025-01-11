@@ -38,5 +38,5 @@ func RecebeDDS(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(fmt.Sprintf("Task criada com sucesso id %s ", task.ID)))
+	w.Write([]byte(fmt.Sprintf("Task criada com sucesso id %d ", task.ID)))
 }

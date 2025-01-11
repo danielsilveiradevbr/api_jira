@@ -109,7 +109,7 @@ func SalvaTask(db *gorm.DB, taskDTO *issuesDto.Issues) (*taskModel.Task, error) 
 		return nil, err
 	}
 	task := taskModel.NewTask(taskDTO)
-	task.PriorityId = project.ID
+	task.ProjectId = project.ID
 	task.SprintId = sprint.ID
 	// task.PROGRES_TOTAL = 0,
 	// task.PROGRESS = 0,
