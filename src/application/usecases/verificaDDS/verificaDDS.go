@@ -1,10 +1,11 @@
-package controllers
+package verificaDDS
 
 import (
 	"net/http"
 	"os"
 
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
+	"github.com/danielsilveiradevbr/api_jira/src/infra/jira"
 	ddsservice "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	"github.com/joho/godotenv"
 )
@@ -21,7 +22,7 @@ func Verificadds(w http.ResponseWriter, r *http.Request) {
 	if os.Getenv("DEBUGANDO") == "T" {
 		println("Verificando")
 	}
-	jsonJira, err := AtualizaDDS("sprint in (openSprints())")
+	jsonJira, err := jira.BuscaDDS("sprint in (openSprints())")
 	if err != nil {
 		if err.Error() != "Sprint with id 11 does not exist or you do not have permission to view it." {
 			panic(err)

@@ -4,9 +4,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
-	controllers "github.com/danielsilveiradevbr/api_jira/src/application/controllers"
+	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/buscaDDS"
+	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/recebeDDS"
+	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/verificaDDS"
 	progressTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/progressTask"
 	statusTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/statusTask"
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
@@ -40,8 +43,8 @@ func main() {
 	}
 	r := chi.NewRouter()
 	r.Use(helper.BasicAuth)
-	r.Post("/dds", controllers.RecebeDDS)
-	r.Get("/verificadds", controllers.Verificadds)
+	r.Post("/dds", recebeDDS.RecebeDDS)
+	r.Get("/verificadds", verificaDDS.Verificadds)
 
 	porta := os.Getenv("PORT")
 	if porta == "" {
@@ -67,7 +70,7 @@ func AtualizaDDS() {
 			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
 			if len(sprints) > 0 {
 				for _, v := range sprints {
-					jsonJira, err := controllers.AtualizaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
+					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
 					if err != nil {
 						panic(err)
 					}
@@ -82,9 +85,9 @@ func AtualizaDDS() {
 				ind := 0
 				for {
 					ind = ind + 1
-					jsonJira, err := controllers.AtualizaDDS(fmt.Sprintf(" sprint = %d", ind))
+					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %d", ind))
 					if err != nil {
-						if err.Error() != "Sprint with id 11 does not exist or you do not have permission to view it." {
+						if err.Error() != fmt.Sprintf("Sprint with id %d does not exist or you do not have permission to view it.", ind) {
 							panic(err)
 						}
 					}
@@ -99,9 +102,9 @@ func AtualizaDDS() {
 
 			}
 
-			jsonJira, err := controllers.AtualizaDDS("sprint in (openSprints())")
+			jsonJira, err := buscaDDS.BuscaDDS("sprint in (openSprints())")
 			if err != nil {
-				if err.Error() != "Sprint with id 11 does not exist or you do not have permission to view it." {
+				if strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
 					panic(err)
 				}
 			}
