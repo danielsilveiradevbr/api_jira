@@ -18,7 +18,7 @@ import (
 	sprintModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
 	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
 	userModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
-	"github.com/danielsilveiradevbr/api_jira/src/utils"
+	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
 	"gorm.io/gorm"
 )
 
@@ -153,7 +153,7 @@ func NewTask(issuesDto *issuesDto.Issues) *Task {
 		AGGREGATE_TIMESPENT:              issuesDto.Fields.AggregateTimeOriginalEstimate,
 		AGGREGATE_TIME_ESTIMATE:          issuesDto.Fields.AggregateTimeEstimate,
 		AGGREGATE_TIME_ORIGINAL_ESTIMATE: issuesDto.Fields.AggregateTimeOriginalEstimate,
-		CREATE:                           utils.StrToTimeTime(issuesDto.Fields.Created),
+		CREATE:                           helper.StrToTimeTime(issuesDto.Fields.Created),
 		CUSTOMFIELD_10105:                issuesDto.Fields.Customfield10105,
 		CUSTOMFIELD_10432:                issuesDto.Fields.Customfield10432,
 		ID_JIRA:                          issuesDto.ID,
@@ -168,10 +168,10 @@ func NewTask(issuesDto *issuesDto.Issues) *Task {
 		LEGIBILIDADE_CODIGO:              issuesDto.Fields.LegibilidadeCodigo,
 		SIMPLICIDADE_CODIGO:              issuesDto.Fields.SimplicidadeCodigo,
 		MODULARIDADE_CODIGO:              issuesDto.Fields.ModularidadeCodigo,
-		TARGET_END:                       utils.StrToTimeTime(issuesDto.Fields.TargetEnd),
-		RESOLUTION_DATE:                  utils.StrToTimeTime(issuesDto.Fields.ResolutionDate),
+		TARGET_END:                       helper.StrToTimeTime(issuesDto.Fields.TargetEnd),
+		RESOLUTION_DATE:                  helper.StrToTimeTime(issuesDto.Fields.ResolutionDate),
 		HORAS_DEV:                        issuesDto.Fields.HorasDev,
-		Update:                           utils.StrToTimeTime(issuesDto.Fields.Updated),
+		Update:                           helper.StrToTimeTime(issuesDto.Fields.Updated),
 		SOLUCAO:                          issuesDto.Fields.Solucao,
 		TIME_ESTIMATE:                    issuesDto.Fields.TimeEstimate,
 		CUSTOMFIELD_10434:                issuesDto.Fields.Customfield10434,

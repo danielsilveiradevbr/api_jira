@@ -26,9 +26,9 @@ import (
 	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	tipoAlteracaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/tipoAlteracao"
 	userModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
+	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
-	service "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
-	u "github.com/danielsilveiradevbr/api_jira/src/utils"
+	ddsservice "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 )
@@ -39,7 +39,9 @@ func main() {
 		panic(err)
 	}
 	r := chi.NewRouter()
+	r.Use(helper.BasicAuth)
 	r.Post("/dds", controllers.RecebeDDS)
+	r.Get("/verificadds", controllers.Verificadds)
 
 	porta := os.Getenv("PORT")
 	if porta == "" {
@@ -54,13 +56,13 @@ func main() {
 
 func AtualizaDDS() {
 	for {
-		hora := u.GetADateTimeSaoPaulo()
+		hora := helper.GetADateTimeSaoPaulo()
 		fmt.Println(hora)
 		db, err := b.ConnectToPG()
 		if err != nil {
 			panic(err)
 		}
-		if hora.Hour() == 19 { //} && hora.Minute() == 59 && hora.Second() == 0 {
+		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
 			var sprints []sprintModel.Sprint
 			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
 			if len(sprints) > 0 {
@@ -70,7 +72,9 @@ func AtualizaDDS() {
 						panic(err)
 					}
 					if jsonJira.Total > 0 {
-						service.SalvaDDS(db, jsonJira)
+						if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+							panic(err)
+						}
 					}
 
 				}
@@ -85,7 +89,11 @@ func AtualizaDDS() {
 						}
 					}
 					if jsonJira.Total > 0 {
-						service.SalvaDDS(db, jsonJira)
+						if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+							panic(err)
+						}
+					} else {
+						break
 					}
 				}
 
@@ -98,7 +106,9 @@ func AtualizaDDS() {
 				}
 			}
 			if jsonJira.Total > 0 {
-				service.SalvaDDS(db, jsonJira)
+				if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+					panic(err)
+				}
 			}
 		}
 		time.Sleep(time.Minute)

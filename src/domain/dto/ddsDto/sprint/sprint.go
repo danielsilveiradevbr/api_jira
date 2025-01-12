@@ -4,7 +4,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/danielsilveiradevbr/api_jira/src/utils"
+	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
 )
 
 type Sprint struct {
@@ -37,13 +37,13 @@ func NewSprintDto(sprintdto []string) *Sprint {
 		} else if key == 3 {
 			sprint.Name = keyValue[1]
 		} else if key == 4 {
-			sprint.StartDate = utils.StrToTimeTime(keyValue[1])
+			sprint.StartDate = helper.StrToTimeTime(keyValue[1])
 		} else if key == 5 {
-			sprint.EndDate = utils.StrToTimeTime(keyValue[1])
+			sprint.EndDate = helper.StrToTimeTime(keyValue[1])
 		} else if key == 6 {
-			sprint.CompleteDate = utils.StrToTimeTime(keyValue[1])
+			sprint.CompleteDate = helper.StrToTimeTime(keyValue[1])
 		} else if key == 7 {
-			sprint.ActivatedDate = utils.StrToTimeTime(keyValue[1])
+			sprint.ActivatedDate = helper.StrToTimeTime(keyValue[1])
 		}
 
 	}
