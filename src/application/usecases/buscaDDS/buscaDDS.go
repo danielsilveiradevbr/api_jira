@@ -6,7 +6,6 @@ import (
 )
 
 func BuscaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
-
 	jsonDDS, err := jira.BuscaDDS(sprintFiltro)
 	if err != nil {
 		return nil, err

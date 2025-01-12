@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
 
 	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
 	"github.com/joho/godotenv"
@@ -60,6 +61,9 @@ func BuscaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
 	err = json.Unmarshal(res, &jsonDDS)
 	if err != nil {
 		return nil, err
+	}
+	if strings.Contains(string(res), "does not exist or you do not have permission to view it.") {
+		return nil, fmt.Errorf("does not exist or you do not have permission to view it.")
 	}
 	if os.Getenv("DEBUGANDO") == "T" {
 		println(jsonDDS.Total)

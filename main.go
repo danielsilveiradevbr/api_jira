@@ -65,7 +65,7 @@ func AtualizaDDS() {
 		if err != nil {
 			panic(err)
 		}
-		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
+		if hora.Hour() == 16 { //23 && hora.Minute() == 59 && hora.Second() == 0 {
 			var sprints []sprintModel.Sprint
 			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
 			if len(sprints) > 0 {
@@ -85,18 +85,21 @@ func AtualizaDDS() {
 				ind := 0
 				for {
 					ind = ind + 1
+					fmt.Printf("ind num %d", ind)
 					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %d", ind))
 					if err != nil {
-						if err.Error() != fmt.Sprintf("Sprint with id %d does not exist or you do not have permission to view it.", ind) {
-							panic(err)
-						}
-					}
-					if jsonJira.Total > 0 {
-						if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+						if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
+							fmt.Println("Deu erro")
 							panic(err)
 						}
 					} else {
-						break
+						if jsonJira.Total > 0 {
+							if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+								panic(err)
+							}
+						} else {
+							break
+						}
 					}
 				}
 
@@ -104,13 +107,14 @@ func AtualizaDDS() {
 
 			jsonJira, err := buscaDDS.BuscaDDS("sprint in (openSprints())")
 			if err != nil {
-				if strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
+				if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
 					panic(err)
 				}
-			}
-			if jsonJira.Total > 0 {
-				if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
-					panic(err)
+			} else {
+				if jsonJira.Total > 0 {
+					if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+						panic(err)
+					}
 				}
 			}
 		}
