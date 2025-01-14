@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
+	helper "github.com/danielsilveiradevbr/helpercripto/pkg"
 	"github.com/joho/godotenv"
 )
 

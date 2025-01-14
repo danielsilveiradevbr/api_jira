@@ -1,3 +1,7 @@
+github.com/danielsilveiradevbr/helpercripto v0.0.0-20250114004034-580f57de1f77 h1:HM68WiXgtfNPps6vLzNTfAl2+wqJZppLb9E4x+KKO1c=
+github.com/danielsilveiradevbr/helpercripto v0.0.0-20250114004034-580f57de1f77/go.mod h1:g9+iWx9JjFCt/kCRxDwS9miOXeGlwsriduRd1OwlGEk=
+github.com/danielsilveiradevbr/helpercripto v0.0.0-20250114010035-e5b6b5c4f2a6 h1:84AWOtDpeG2x8aQ2cw7EbOM0TdNMrBIW9l/hIHNLFd8=
+github.com/danielsilveiradevbr/helpercripto v0.0.0-20250114010035-e5b6b5c4f2a6/go.mod h1:g9+iWx9JjFCt/kCRxDwS9miOXeGlwsriduRd1OwlGEk=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
