@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/buscaDDS"
+	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/cripto"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/recebeDDS"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/verificaDDS"
 	progressTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/progressTask"
@@ -45,6 +46,7 @@ func main() {
 	r.Use(helper.BasicAuth)
 	r.Post("/dds", recebeDDS.RecebeDDS)
 	r.Get("/verificadds", verificaDDS.Verificadds)
+	r.Post("/cripto", cripto.Cripto)
 
 	porta := os.Getenv("PORT")
 	if porta == "" {
