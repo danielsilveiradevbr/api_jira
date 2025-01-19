@@ -1,7 +1,7 @@
 package projectModel
 
 import (
-	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
+	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/project"
 
 	projectCategoryModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/projectCategory"
 	"gorm.io/gorm"

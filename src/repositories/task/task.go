@@ -1,7 +1,7 @@
 package taskRep
 
 import (
-	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issues"
+	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/issues"
 	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/assignee"
 	"github.com/danielsilveiradevbr/api_jira/src/repositories/auxiliares/progressTask"

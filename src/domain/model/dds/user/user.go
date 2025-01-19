@@ -1,10 +1,10 @@
 package userModel
 
 import (
+	assineeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/assineee"
+	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/creator"
+	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/reporter"
 	tipoUserDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/tipoUser"
-	assineeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/assineee"
-	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/creator"
-	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/reporter"
 	tipoUserModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/tipoUser"
 	tipoUserRep "github.com/danielsilveiradevbr/api_jira/src/repositories/auxiliares/tipoUser"
 	"gorm.io/gorm"

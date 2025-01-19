@@ -1,7 +1,7 @@
 package complexidade
 
 import (
-	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/complexidade"
+	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/complexidade"
 	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"
 	"gorm.io/gorm"
 )

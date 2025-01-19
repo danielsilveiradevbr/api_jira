@@ -1,7 +1,7 @@
 package project
 
 import (
-	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
+	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/project"
 	projectModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/project"
 	projectCategoryRep "github.com/danielsilveiradevbr/api_jira/src/repositories/projectCategory"
 	"gorm.io/gorm"

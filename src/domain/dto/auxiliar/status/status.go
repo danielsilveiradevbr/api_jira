@@ -1,6 +1,6 @@
 package statusDto
 
-import statusCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/statusCategory"
+import statusCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/statusCategory"
 
 type Status struct {
 	Self           string                           `json:"self"`

@@ -1,8 +1,8 @@
-package assineeDto
+package reporterDto
 
-import avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/avatarUrls"
+import avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/avatarUrls"
 
-type Assignee struct {
+type Reporter struct {
 	Self         string                   `json:"self"`
 	Name         string                   `json:"name"`
 	Key          string                   `json:"key"`

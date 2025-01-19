@@ -1,7 +1,7 @@
 package issueTypeModel
 
 import (
-	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issueType"
+	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/issueType"
 	"gorm.io/gorm"
 )
 

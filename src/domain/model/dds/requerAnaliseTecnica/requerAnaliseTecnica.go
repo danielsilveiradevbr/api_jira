@@ -1,7 +1,7 @@
 package requerAnaliseTecnicaModel
 
 import (
-	requerAnaliseTecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerAnaliseTecnica"
+	requerAnaliseTecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/requerAnaliseTecnica"
 	"gorm.io/gorm"
 )
 

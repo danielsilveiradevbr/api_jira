@@ -1,8 +1,8 @@
 package projectDto
 
 import (
-	avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/avatarUrls"
-	projectCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/projectCategory"
+	avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/avatarUrls"
+	projectCategoryDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/projectCategory"
 )
 
 type Project struct {

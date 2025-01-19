@@ -1,7 +1,7 @@
 package sku
 
 import (
-	skuDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sku"
+	skuDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/sku"
 	skuModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sku"
 	"gorm.io/gorm"
 )

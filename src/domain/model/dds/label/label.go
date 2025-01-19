@@ -1,7 +1,7 @@
 package labelModel
 
 import (
-	labelDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/label"
+	labelDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/label"
 	"gorm.io/gorm"
 )
 

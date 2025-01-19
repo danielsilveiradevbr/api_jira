@@ -3,7 +3,7 @@ package sprintModel
 import (
 	"time"
 
-	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sprint"
+	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/sprint"
 	"gorm.io/gorm"
 )
 

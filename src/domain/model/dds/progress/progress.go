@@ -1,7 +1,7 @@
 package progressModel
 
 import (
-	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/progress"
+	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/progress"
 	"gorm.io/gorm"
 )
 

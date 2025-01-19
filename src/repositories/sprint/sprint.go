@@ -3,7 +3,7 @@ package sprint
 import (
 	"fmt"
 
-	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/sprint"
+	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/sprint"
 	sprint "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
 	"gorm.io/gorm"
 )

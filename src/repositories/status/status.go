@@ -1,7 +1,7 @@
 package status
 
 import (
-	statusDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/status"
+	statusDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/status"
 	statusModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/status"
 	statusCategoryRep "github.com/danielsilveiradevbr/api_jira/src/repositories/statusCategory"
 	"gorm.io/gorm"

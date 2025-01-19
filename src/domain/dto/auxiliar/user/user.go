@@ -1,8 +1,8 @@
-package reporterDto
+package userDto
 
-import avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/avatarUrls"
+import avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/avatarUrls"
 
-type Reporter struct {
+type User struct {
 	Self         string                   `json:"self"`
 	Name         string                   `json:"name"`
 	Key          string                   `json:"key"`

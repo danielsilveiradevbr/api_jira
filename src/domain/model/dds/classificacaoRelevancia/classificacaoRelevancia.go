@@ -1,7 +1,7 @@
 package classificacaoRelevanciaModel
 
 import (
-	classificacaoRelevanciaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/classificacaorelevancia"
+	classificacaoRelevanciaDTO "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/classificacaorelevancia"
 	"gorm.io/gorm"
 )
 

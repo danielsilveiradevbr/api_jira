@@ -3,7 +3,7 @@ package taskModel
 import (
 	"time"
 
-	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issues"
+	issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/issues"
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/classificacaoRelevancia"
 	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/cliente"
 	complexidadeModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/complexidade"

@@ -1,6 +1,6 @@
 package creatorDto
 
-import avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/avatarUrls"
+import avatarUrlsDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/avatarUrls"
 
 type Creator struct {
 	Self         string                   `json:"self"`

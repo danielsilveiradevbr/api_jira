@@ -1,6 +1,6 @@
 package jsonDdsDto
 
-import issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issues"
+import issuesDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/issues"
 
 type JsonDDS struct {
 	Expand     string             `json:"expand"`

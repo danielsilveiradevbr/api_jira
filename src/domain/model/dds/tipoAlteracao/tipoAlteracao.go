@@ -1,7 +1,7 @@
 package tipoAlteracaoModel
 
 import (
-	tipoAlteracaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/tipoAlteracao"
+	tipoAlteracaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/tipoAlteracao"
 	"gorm.io/gorm"
 )
 

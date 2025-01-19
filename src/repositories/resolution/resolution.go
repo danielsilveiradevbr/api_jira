@@ -1,7 +1,7 @@
 package resolution
 
 import (
-	resolutionDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/resolution"
+	resolutionDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/resolution"
 	resolutionModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/resolution"
 	"gorm.io/gorm"
 )

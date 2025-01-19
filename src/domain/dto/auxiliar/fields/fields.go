@@ -1,20 +1,20 @@
 package fieldsDto
 
 import (
-	assineeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/assineee"
-	classificacaoRelevanciaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/classificacaorelevancia"
-	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/complexidade"
-	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/creator"
-	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/issueType"
-	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/priority"
-	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/progress"
-	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/project"
-	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/reporter"
-	requerAnalisetecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerAnaliseTecnica"
-	requerDocumentacaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/requerDocumentacao"
-	resolutionDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/resolution"
-	statusDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/status"
-	tipoAlteracaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/tipoAlteracao"
+	assineeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/assineee"
+	classificacaoRelevanciaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/classificacaorelevancia"
+	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/complexidade"
+	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/creator"
+	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/issueType"
+	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/priority"
+	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/progress"
+	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/project"
+	reporterDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/reporter"
+	requerAnalisetecnicaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/requerAnaliseTecnica"
+	requerDocumentacaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/requerDocumentacao"
+	resolutionDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/resolution"
+	statusDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/status"
+	tipoAlteracaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/tipoAlteracao"
 )
 
 type Fields struct {
