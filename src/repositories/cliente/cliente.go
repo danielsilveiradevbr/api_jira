@@ -2,7 +2,7 @@ package cliente
 
 import (
 	clienteDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/cliente"
-	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/cliente"
+	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/cliente"
 	"gorm.io/gorm"
 )
 

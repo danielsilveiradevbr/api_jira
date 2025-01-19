@@ -2,7 +2,7 @@ package label
 
 import (
 	labelDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/label"
-	labelModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/label"
+	labelModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/label"
 	"gorm.io/gorm"
 )
 

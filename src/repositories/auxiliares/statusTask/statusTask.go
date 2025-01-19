@@ -2,8 +2,8 @@ package statusTask
 
 import (
 	statusTaskDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/statusTask"
+	statusModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/status"
 	statusTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/statusTask"
-	statusModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/status"
 	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	"gorm.io/gorm"
 )

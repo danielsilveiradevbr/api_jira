@@ -2,7 +2,7 @@ package creator
 
 import (
 	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/creator"
-	creatorModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/user"
+	creatorModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/user"
 	"gorm.io/gorm"
 )
 

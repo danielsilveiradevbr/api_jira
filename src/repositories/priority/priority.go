@@ -2,7 +2,7 @@ package priority
 
 import (
 	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/priority"
-	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/priority"
+	priorityModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/priority"
 	"gorm.io/gorm"
 )
 

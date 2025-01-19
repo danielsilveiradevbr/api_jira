@@ -2,7 +2,7 @@ package requerDocumentacao
 
 import (
 	requerDocumentacaoDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/requerDocumentacao"
-	requerDocumentacaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/requerDocumentacao"
+	requerDocumentacaoModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/requerDocumentacao"
 	"gorm.io/gorm"
 )
 

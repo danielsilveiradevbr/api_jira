@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	sprintDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/sprint"
-	sprint "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/sprint"
+	sprint "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/sprint"
 	"gorm.io/gorm"
 )
 

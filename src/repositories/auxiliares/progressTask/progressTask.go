@@ -2,8 +2,8 @@ package progressTask
 
 import (
 	progressTaskDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/progressTask"
+	progressModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/progress"
 	progressTaskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/progressTask"
-	progressModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/progress"
 	taskModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/dds/task"
 	"gorm.io/gorm"
 )
