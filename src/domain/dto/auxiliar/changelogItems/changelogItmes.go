@@ -6,4 +6,5 @@ type Items struct {
 	From       string `json:"from"`
 	FromString string `json:"fromString"`
 	To         string `json:"to"`
+	ToString   string `json:"toString"`
 }

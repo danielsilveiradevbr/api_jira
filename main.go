@@ -9,6 +9,7 @@ import (
 
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/buscaDDS"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/cripto"
+	dds "github.com/danielsilveiradevbr/api_jira/src/application/usecases/notificaJira/DDS"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/recebeDDS"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/verificaDDS"
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/classificacaoRelevancia"
@@ -47,8 +48,9 @@ func main() {
 	r.Post("/dds", recebeDDS.RecebeDDS)
 	r.Get("/verificadds", verificaDDS.Verificadds)
 	r.Post("/cripto", cripto.Cripto)
+	r.Post("/notifica", dds.Notifica)
 
-	porta := os.Getenv("PORT")
+	porta := os.Getenv("PORT_LISTEN")
 	if porta == "" {
 		porta = "3000"
 	}

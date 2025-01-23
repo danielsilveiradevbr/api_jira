@@ -1,11 +1,11 @@
-package fieldsDto
+package fieldsNotificaDto
 
 import (
 	assineeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/assineee"
 	classificacaoRelevanciaDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/classificacaorelevancia"
-	complexidadeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/complexidade"
 	creatorDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/creator"
 	issueTypeDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/issueType"
+	lastViwedDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/lastViwed"
 	priorityDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/priority"
 	progressDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/progress"
 	projectDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/project"
@@ -19,6 +19,7 @@ import (
 
 type Fields struct {
 	// Customfield13100              any               `json:"customfield_13100"`
+	//Customfield14554              any    `json:"customfield_14554"` notifica
 	// Customfield13101              any               `json:"customfield_13101"`
 	// Customfield14557              any               `json:"customfield_14557"`
 	Resolution resolutionDto.Resolution `json:"resolution"`
@@ -27,11 +28,14 @@ type Fields struct {
 	// Customfield14309              any               `json:"customfield_14309"`
 	// Customfield14306              any               `json:"customfield_14306"`
 	// Customfield11718              any               `json:"customfield_11718"`
-	//LastViewed lastViwedDto.LastViewed `json:"lastViewed"`
+	LastViewed lastViwedDto.LastViewed `json:"lastViewed"`
 	// Customfield14300              any               `json:"customfield_14300"`
 	// Customfield12001              any               `json:"customfield_12001"`
+	Customfield14541 string `json:"customfield_14541"` //notifica
 	// Customfield14304              any               `json:"customfield_14304"`
+	//Customfield14546              any    `json:"customfield_14546"` notifica
 	// Customfield14305              any               `json:"customfield_14305"`
+	//Customfield14547              any    `json:"customfield_14547"`Notifica
 	HorasDev float32  `json:"customfield_14302"`
 	Labels   []string `json:"labels"`
 	// Customfield10610              any               `json:"customfield_10610"`
@@ -109,14 +113,17 @@ type Fields struct {
 	// Customfield10353              any               `json:"customfield_10353"`
 	// Customfield13623              any               `json:"customfield_13623"`
 	// Customfield10355              any               `json:"customfield_10355"`
-	Cliente []string `json:"customfield_13501"`
+	Cliente []string `json:"customfield_10110"`
 	// Customfield12533              any               `json:"customfield_12533"`
 	// Customfield10356              any               `json:"customfield_10356"`
 	// Customfield13614              any               `json:"customfield_13614"`
 	// Customfield10347              any               `json:"customfield_10347"`
 	// Customfield13613              any               `json:"customfield_13613"`
 	Customfield10105 string `json:"customfield_10105"`
+	//Customfield15000 any `json:"customfield_15000"` notifica
 	// Customfield10106              any               `json:"customfield_10106"`
+	//Customfield14702 float64 `json:"customfield_14702"` notifica
+	//Customfield14703 any     `json:"customfield_14703"` notifica
 	// Customfield13616              any               `json:"customfield_13616"`
 	// Customfield12406              any               `json:"customfield_12406"`
 	// Customfield10107              any               `json:"customfield_10107"`
@@ -127,6 +134,7 @@ type Fields struct {
 	// Customfield10109              any               `json:"customfield_10109"`
 	// Customfield10902              any               `json:"customfield_10902"`
 	// Customfield10903              any               `json:"customfield_10903"`
+	//Customfield14827 any `json:"customfield_14827"` notifica
 	// Customfield10904              any               `json:"customfield_10904"`
 	// Customfield10906              any               `json:"customfield_10906"`
 	// Customfield10907              any               `json:"customfield_10907"`
@@ -192,6 +200,8 @@ type Fields struct {
 	// Customfield14002              any               `json:"customfield_14002"`
 	// Aggregateprogress             Aggregateprogress `json:"aggregateprogress"`
 	// Customfield11410              any               `json:"customfield_11410"`
+	//Customfield14007 any      `json:"customfield_14007"` notifica
+	//Customfield14008 any      `json:"customfield_14008"` notifica
 	// Customfield10321              any               `json:"customfield_10321"`
 	// Customfield10200              any               `json:"customfield_10200"`
 	// Customfield13711              any               `json:"customfield_13711"`
@@ -222,6 +232,8 @@ type Fields struct {
 	// Customfield10431              any               `json:"customfield_10431"`
 	Customfield10432 string `json:"customfield_10432"`
 	Customfield10433 string `json:"customfield_10433"`
+	//Customfield13700   any    `json:"customfield_13700"` notifica
+	//Customfield14900   any    `json:"customfield_14900"` notifica
 	// Customfield10423              any               `json:"customfield_10423"`
 	// Customfield10424              any               `json:"customfield_10424"`
 	// Customfield11636              any               `json:"customfield_11636"`
@@ -248,7 +260,10 @@ type Fields struct {
 	// Customfield11625              any               `json:"customfield_11625"`
 	// Customfield13924              any               `json:"customfield_13924"`
 	// Customfield11624              any               `json:"customfield_11624"`
+	//Customfield13923 any `json:"customfield_13923"` notifica
 	// Customfield13925              string  `json:"customfield_13925"`
+	//Customfield13809 any `json:"customfield_13809"` notifica
+	//Customfield13808 any `json:"customfield_13808"` notifica
 	// Customfield13928              any               `json:"customfield_13928"`
 	// Customfield13927              any               `json:"customfield_13927"`
 	// Customfield13929              any               `json:"customfield_13929"`
@@ -259,6 +274,8 @@ type Fields struct {
 	// Customfield12701              any               `json:"customfield_12701"`
 	// Customfield13911              any               `json:"customfield_13911"`
 	// Customfield11614              any               `json:"customfield_11614"`
+	//Customfield13910 any `json:"customfield_13910"` notifica
+	//Customfield13913 any `json:"customfield_13913"` notifica
 	// Customfield11613              any               `json:"customfield_11613"`
 	// Customfield13912              any               `json:"customfield_13912"`
 	// Customfield11616              any               `json:"customfield_11616"`
@@ -270,6 +287,7 @@ type Fields struct {
 	// Customfield13919              any               `json:"customfield_13919"`
 	// Customfield11619              any               `json:"customfield_11619"`
 	// Customfield13918              any               `json:"customfield_13918"`
+	//Customfield14860 any `json:"customfield_14560"` notifica
 	// Customfield14200              any               `json:"customfield_14200"`
 	// Customfield10400              any               `json:"customfield_10400"`
 	// Customfield11724              any               `json:"customfield_11724"`
@@ -283,13 +301,14 @@ type Fields struct {
 	TipoAlteracao tipoAlteracaoDto.TipoAlteracao `json:"customfield_13905"`
 	// Customfield13908              any               `json:"customfield_13908"`
 	// Customfield13907              any               `json:"customfield_13907"`
-	HorasTest          float32                      `json:"customfield_14539"`
-	PadronizacaoCodigo float32                      `json:"customfield_14549"`
-	DuplicacaoCodigo   float32                      `json:"customfield_14548"`
-	DocumentacaoCodigo float32                      `json:"customfield_14550"`
-	LegibilidadeCodigo float32                      `json:"customfield_14551"`
-	SimplicidadeCodigo float32                      `json:"customfield_14552"`
-	ModularidadeCodigo float32                      `json:"customfield_14553"`
-	QtdeRetrabalho     float32                      `json:"customfield_14544"`
-	Complexidade       complexidadeDto.Complexidade `json:"customfield_14559"`
+	//Customfield13909 any `json:"customfield_13909"` notifica
+	//HorasTest          float32                      `json:"customfield_14539"`
+	//PadronizacaoCodigo float32                      `json:"customfield_14549"`
+	//DuplicacaoCodigo   float32                      `json:"customfield_14548"`
+	//DocumentacaoCodigo float32                      `json:"customfield_14550"`
+	//LegibilidadeCodigo float32                      `json:"customfield_14551"`
+	//SimplicidadeCodigo float32                      `json:"customfield_14552"`
+	//ModularidadeCodigo float32                      `json:"customfield_14553"`
+	//QtdeRetrabalho     float32                      `json:"customfield_14544"`
+	//Complexidade       complexidadeDto.Complexidade `json:"customfield_14559"`
 }

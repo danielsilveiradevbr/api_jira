@@ -43,10 +43,7 @@ func Verificadds(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Verificação realizada com sucesso!"))
 		return
-	} else {
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Verificação realizada com sucesso!"))
-		return
 	}
-
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("Verificação realizada com sucesso!"))
 }
