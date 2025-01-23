@@ -8,6 +8,7 @@ import (
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/cripto"
 	dds "github.com/danielsilveiradevbr/api_jira/src/application/usecases/notificaJira/DDS"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/recebeDDS"
+	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/verificaAPI"
 	"github.com/danielsilveiradevbr/api_jira/src/application/usecases/verificaDDS"
 	classificacaoRelevanciaModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/classificacaoRelevancia"
 	clienteModel "github.com/danielsilveiradevbr/api_jira/src/domain/model/auxiliar/cliente"
@@ -53,7 +54,7 @@ func main() {
 	porta = ":" + porta
 	println(porta)
 	go atualizaDDS.AtualizaDDS()
-
+	go verificaAPI.VerificaAPI()
 	http.ListenAndServe(porta, r)
 }
 
