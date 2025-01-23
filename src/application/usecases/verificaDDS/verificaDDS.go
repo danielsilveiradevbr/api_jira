@@ -1,9 +1,13 @@
 package verificaDDS
 
 import (
+	"encoding/json"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 
+	filtroDDSDto "github.com/danielsilveiradevbr/api_jira/src/domain/dto/auxiliar/filtroDDS"
 	b "github.com/danielsilveiradevbr/api_jira/src/infra/banco"
 	"github.com/danielsilveiradevbr/api_jira/src/infra/jira"
 	ddsservice "github.com/danielsilveiradevbr/api_jira/src/service/ddsService"
@@ -11,7 +15,28 @@ import (
 )
 
 func Verificadds(w http.ResponseWriter, r *http.Request) {
-	err := godotenv.Load()
+	res, err := io.ReadAll(r.Body)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte(err.Error()))
+		return
+	}
+
+	var filtro *filtroDDSDto.FiltroDDS
+	err = json.Unmarshal(res, &filtro)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte(err.Error()))
+		return
+	}
+
+	if strings.Trim(filtro.Filtro, "") == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Necessario informar um filtro"))
+		return
+	}
+
+	err = godotenv.Load()
 	if err != nil {
 		w.Write([]byte(err.Error()))
 	}
@@ -22,7 +47,7 @@ func Verificadds(w http.ResponseWriter, r *http.Request) {
 	if os.Getenv("DEBUGANDO") == "T" {
 		println("Verificando")
 	}
-	jsonJira, err := jira.BuscaDDS("sprint in (openSprints())")
+	jsonJira, err := jira.BuscaDDS(filtro.Filtro)
 	if err != nil {
 		if err.Error() != "Sprint with id 11 does not exist or you do not have permission to view it." {
 			panic(err)
