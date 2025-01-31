@@ -14,24 +14,24 @@ import (
 
 func AtualizaDDS() {
 	for {
-		hora := helper.GetADateTimeSaoPaulo()
-		fmt.Println(hora)
+		hora := time.Now() //helper.GetADateTimeSaoPaulo()
+		helper.NewLog(1, "Hora da consulta "+hora.GoString())
 		db, err := banco.ConnectToPG()
 		if err != nil {
-			panic(err)
+			helper.NewLog(2, err.Error())
 		}
-		if hora.Hour() == 16 { //23 && hora.Minute() == 59 && hora.Second() == 0 {
+		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
 			var sprints []sprintModel.Sprint
 			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
 			if len(sprints) > 0 {
 				for _, v := range sprints {
 					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
 					if err != nil {
-						panic(err)
+						helper.NewLog(2, err.Error())
 					}
 					if jsonJira.Total > 0 {
 						if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
-							panic(err)
+							helper.NewLog(2, err.Error())
 						}
 					}
 
@@ -44,13 +44,12 @@ func AtualizaDDS() {
 					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %d", ind))
 					if err != nil {
 						if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
-							fmt.Println("Deu erro")
-							panic(err)
+							helper.NewLog(2, err.Error())
 						}
 					} else {
 						if jsonJira.Total > 0 {
 							if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
-								panic(err)
+								helper.NewLog(2, err.Error())
 							}
 						} else {
 							break
@@ -61,14 +60,16 @@ func AtualizaDDS() {
 			}
 
 			jsonJira, err := buscaDDS.BuscaDDS("sprint in (openSprints())")
+			helper.NewLog(1, "iniciou a busca da sprint aberta")
 			if err != nil {
 				if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
-					panic(err)
+					helper.NewLog(2, err.Error())
 				}
 			} else {
 				if jsonJira.Total > 0 {
+					helper.NewLog(1, fmt.Sprintf("encontrou %d dds", jsonJira.Total))
 					if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
-						panic(err)
+						helper.NewLog(2, err.Error())
 					}
 				}
 			}

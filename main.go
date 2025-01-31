@@ -36,10 +36,13 @@ import (
 )
 
 func main() {
+
 	err := godotenv.Load()
 	if err != nil {
-		panic(err)
+		helper.NewLog(1, err.Error())
 	}
+
+	// Define o arquivo como destino para os logs
 	r := chi.NewRouter()
 	r.Use(helper.BasicAuth)
 	r.Post("/dds", recebeDDS.RecebeDDS)
@@ -52,7 +55,9 @@ func main() {
 		porta = "3000"
 	}
 	porta = ":" + porta
-	println(porta)
+
+	helper.NewLog(1, "Iniciou na porta "+porta)
+	println("Iniciou na porta " + porta)
 	go atualizaDDS.AtualizaDDS()
 	go verificaAPI.VerificaAPI()
 	http.ListenAndServe(porta, r)

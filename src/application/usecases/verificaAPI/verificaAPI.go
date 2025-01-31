@@ -8,31 +8,33 @@ import (
 	"strings"
 	"time"
 
+	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
 	telegram "github.com/danielsilveiradevbr/api_jira/src/infra/mensagem"
 )
 
 func VerificaAPI() {
 	apisTestar := strings.Split(os.Getenv("APIS_TESTAR"), "|")
-	fmt.Println(len(apisTestar))
+	helper.NewLog(1, "Iniciou o teste de apis")
 	if len(apisTestar) > 0 {
 		for {
 			for _, apiTestar := range apisTestar {
 				api := strings.Split(apiTestar, ",")
-				fmt.Println(api[0])
+
 				if len(api) > 0 {
 					if strings.Trim(api[0], "") != "" {
 						c := http.Client{Timeout: time.Second}
 						resp, err := c.Get(api[0])
 						if err != nil {
-							panic(err)
+							helper.NewLog(2, err.Error())
 						}
 						defer resp.Body.Close()
 						body, err := io.ReadAll(resp.Body)
 						if err != nil {
-							panic(err)
+							helper.NewLog(2, err.Error())
 						}
 
 						if string(body) != "ONLINE" {
+							helper.NewLog(2, "erro na api "+api[0])
 							users := strings.Split(os.Getenv("USERS_ENVIO_MSG_TELEGRAM_EM_DEV"), "|")
 							telegramBotToken := os.Getenv("TELEGRAM_BOT")
 							for _, user := range users {
@@ -41,6 +43,8 @@ func VerificaAPI() {
 									break
 								}
 							}
+						} else {
+							helper.NewLog(2, "ok com api "+api[0])
 						}
 					}
 				}
