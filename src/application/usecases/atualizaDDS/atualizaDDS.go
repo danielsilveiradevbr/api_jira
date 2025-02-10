@@ -16,11 +16,13 @@ func AtualizaDDS() {
 	for {
 		hora := time.Now() //helper.GetADateTimeSaoPaulo()
 		helper.NewLog(1, "Hora da consulta "+hora.GoString())
-		db, err := banco.ConnectToPG()
-		if err != nil {
-			helper.NewLog(2, err.Error())
-		}
+
 		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
+			db, err := banco.ConnectToPG()
+			if err != nil {
+				helper.NewLog(2, err.Error())
+			}
+			//defer db.Close()
 			var sprints []sprintModel.Sprint
 			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
 			if len(sprints) > 0 {
@@ -38,6 +40,11 @@ func AtualizaDDS() {
 				}
 			} else {
 				ind := 0
+				db, err := banco.ConnectToPG()
+				if err != nil {
+					helper.NewLog(2, err.Error())
+				}
+				//defer db.Close()
 				for {
 					ind = ind + 1
 					fmt.Printf("ind num %d", ind)

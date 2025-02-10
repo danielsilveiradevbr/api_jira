@@ -10,6 +10,7 @@ import (
 
 	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
 	telegram "github.com/danielsilveiradevbr/api_jira/src/infra/mensagem"
+	cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
 )
 
 func VerificaAPI() {
@@ -35,8 +36,8 @@ func VerificaAPI() {
 
 						if string(body) != "ONLINE" {
 							helper.NewLog(2, "erro na api "+api[0])
-							users := strings.Split(os.Getenv("USERS_ENVIO_MSG_TELEGRAM_EM_DEV"), "|")
-							telegramBotToken := os.Getenv("TELEGRAM_BOT")
+							users := strings.Split(cripto.Cripto("D", os.Getenv("USERS_ENVIO_MSG_TELEGRAM_EM_DEV"), os.Getenv("KEY")), "|")
+							telegramBotToken := cripto.Cripto("D", os.Getenv("TELEGRAM_BOT"), os.Getenv("KEY"))
 							for _, user := range users {
 								err := telegram.SendMessage(telegramBotToken, user, fmt.Sprintf("API %s NÃO RESPONDEU NO ENDEREÇO %s", api[1], api[0]))
 								if err != nil {
