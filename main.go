@@ -37,6 +37,10 @@ import (
 
 func main() {
 
+	defer func() {
+		recover()
+	}()
+
 	err := godotenv.Load()
 	if err != nil {
 		helper.NewLog(1, err.Error())
