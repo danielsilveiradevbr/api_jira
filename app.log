@@ -38,3 +38,9 @@
 {"time":"2025-02-23T12:03:12.4853337-03:00","level":"INFO","msg":"Hora da consulta time.Date(2025, time.February, 23, 12, 3, 12, 485333700, time.Local)"}
 {"time":"2025-02-23T12:04:12.4918415-03:00","level":"INFO","msg":"Hora da consulta time.Date(2025, time.February, 23, 12, 4, 12, 488480500, time.Local)"}
 {"time":"2025-02-23T12:05:12.4995854-03:00","level":"INFO","msg":"Hora da consulta time.Date(2025, time.February, 23, 12, 5, 12, 499009600, time.Local)"}
+{"time":"2025-02-23T12:08:57.521112-03:00","level":"INFO","msg":"Iniciou na porta :3000"}
+{"time":"2025-02-23T12:08:57.5296423-03:00","level":"INFO","msg":"Hora da consulta time.Date(2025, time.February, 23, 12, 8, 57, 529587100, time.Local)"}
+{"time":"2025-02-23T12:08:57.5296423-03:00","level":"INFO","msg":"Iniciou o teste de apis"}
+{"time":"2025-02-23T12:08:57.843976-03:00","level":"ERROR","msg":"ok com api https://statusnexxeraaws.integracoeswmc.com.br"}
+{"time":"2025-02-23T12:08:58.0370389-03:00","level":"ERROR","msg":"ok com api https://status_infra_envio.integracoeswmc.com.br"}
+{"time":"2025-02-23T12:08:58.4171283-03:00","level":"ERROR","msg":"ok com api https://status_infra_recebe.integracoeswmc.com.br"}

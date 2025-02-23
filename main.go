@@ -38,6 +38,7 @@ import (
 func main() {
 
 	defer func() {
+		helper.NewLog(2, "Usou o recover")
 		recover()
 	}()
 
