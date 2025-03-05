@@ -56,3 +56,9 @@
 {"time":"2025-03-04T21:20:19.5212634-03:00","level":"ERROR","msg":"ok com api https://statusnexxeraaws.integracoeswmc.com.br"}
 {"time":"2025-03-04T21:20:19.6626494-03:00","level":"ERROR","msg":"ok com api https://status_infra_envio.integracoeswmc.com.br"}
 {"time":"2025-03-04T21:20:19.7932951-03:00","level":"ERROR","msg":"ok com api https://status_infra_recebe.integracoeswmc.com.br"}
+{"time":"2025-03-04T21:22:10.0980836-03:00","level":"INFO","msg":"Iniciou na porta :3000"}
+{"time":"2025-03-04T21:22:10.1061345-03:00","level":"INFO","msg":"Hora da consulta time.Date(2025, time.March, 4, 21, 22, 10, 105030000, time.Local)"}
+{"time":"2025-03-04T21:22:10.1061345-03:00","level":"INFO","msg":"Iniciou o teste de apis"}
+{"time":"2025-03-04T21:22:10.3479628-03:00","level":"ERROR","msg":"ok com api https://statusnexxeraaws.integracoeswmc.com.br"}
+{"time":"2025-03-04T21:22:10.5234141-03:00","level":"ERROR","msg":"ok com api https://status_infra_envio.integracoeswmc.com.br"}
+{"time":"2025-03-04T21:22:10.697966-03:00","level":"ERROR","msg":"ok com api https://status_infra_recebe.integracoeswmc.com.br"}
