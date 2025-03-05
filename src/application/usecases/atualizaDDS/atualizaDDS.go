@@ -13,11 +13,16 @@ import (
 )
 
 func AtualizaDDS() {
+	var atualizou = false
 	for {
 		hora := time.Now() //helper.GetADateTimeSaoPaulo()
 		helper.NewLog(1, "Hora da consulta "+hora.GoString())
 
-		if hora.Hour() == 23 && hora.Minute() == 59 && hora.Second() == 0 {
+		if (hora.Hour() >= 23 && hora.Minute() == 58 && hora.Second() == 0) && (hora.Hour() <= 23 && hora.Minute() == 59 && hora.Second() == 59) {
+			if atualizou {
+				continue
+			}
+
 			db, err := banco.ConnectToPG()
 			if err != nil {
 				helper.NewLog(2, err.Error())
@@ -80,6 +85,9 @@ func AtualizaDDS() {
 					}
 				}
 			}
+			atualizou = true
+		} else {
+			atualizou = false
 		}
 		time.Sleep(time.Minute)
 	}
