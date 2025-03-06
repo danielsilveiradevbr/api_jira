@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	dds "github.com/danielsilveiradevbr/api_jira/src/domain/dto/ddsDto/jsonDDS"
-	cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
+	//cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
 	"github.com/joho/godotenv"
 )
 
@@ -21,13 +21,13 @@ func BuscaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
 		return nil, err
 	}
 	method := "POST"
-	endpoint := cripto.Cripto("D", os.Getenv("ENDPOINT_JIRA"), os.Getenv("KEY"))
+	endpoint := os.Getenv("ENDPOINT_JIRA") //cripto.Cripto("D", os.Getenv("ENDPOINT_JIRA"), os.Getenv("KEY"))
 	if os.Getenv("DEBUGANDO") == "T" {
 		println(endpoint)
 	}
 
 	body, _ := json.Marshal(map[string]string{
-		"jql": "project = \"Desenvolvimento de Software\" AND " + sprintFiltro,
+		"jql": sprintFiltro,
 	})
 
 	payload := bytes.NewBuffer(body)
@@ -38,7 +38,7 @@ func BuscaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
 	}
 
 	// Adicione o cabeçalho de autenticação básica
-	req.SetBasicAuth(cripto.Cripto("D", os.Getenv("USER_JIRA"), os.Getenv("KEY")), cripto.Cripto("D", os.Getenv("PASS_JIRA"), os.Getenv("KEY")))
+	req.SetBasicAuth(os.Getenv("USER_JIRA"), os.Getenv("PASS_JIRA")) //cripto.Cripto("D", os.Getenv("USER_JIRA"), os.Getenv("KEY")), cripto.Cripto("D", os.Getenv("PASS_JIRA"), os.Getenv("KEY")))
 	req.Header.Set("Content-Type", "application/json")
 	// Faça a solicitação HTTP
 	client := &http.Client{}
@@ -64,7 +64,7 @@ func BuscaDDS(sprintFiltro string) (*dds.JsonDDS, error) {
 		return nil, err
 	}
 	if strings.Contains(string(res), "does not exist or you do not have permission to view it.") {
-		return nil, fmt.Errorf("does not exist or you do not have permission to view it.")
+		return nil, fmt.Errorf("does not exist or you do not have permission to view it.", "")
 	}
 	if os.Getenv("DEBUGANDO") == "T" {
 		println(jsonDDS.Total)

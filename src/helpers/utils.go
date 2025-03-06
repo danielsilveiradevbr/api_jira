@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
+	//cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
 	"github.com/joho/godotenv"
 )
 
@@ -68,8 +68,8 @@ func checkAuth(auth string) bool {
 		return false
 	}
 	// Verifico as  username e password
-	validUsername := cripto.Cripto("D", os.Getenv("AUTH_USER"), os.Getenv("KEY"))
-	validPassword := cripto.Cripto("D", os.Getenv("AUTH_PASSWORD"), os.Getenv("KEY"))
+	validUsername := os.Getenv("AUTH_USER")     //cripto.Cripto("D", os.Getenv("AUTH_USER"), os.Getenv("KEY"))
+	validPassword := os.Getenv("AUTH_PASSWORD") //cripto.Cripto("D", os.Getenv("AUTH_PASSWORD"), os.Getenv("KEY"))
 	return string(decoded) == fmt.Sprintf("%s:%s", validUsername, validPassword)
 }
 

@@ -13,82 +13,72 @@ import (
 )
 
 func AtualizaDDS() {
-	var atualizou = false
 	for {
+		time.Sleep(time.Minute)
 		hora := time.Now() //helper.GetADateTimeSaoPaulo()
 		helper.NewLog(1, "Hora da consulta "+hora.GoString())
 
-		if (hora.Hour() >= 23 && hora.Minute() == 58 && hora.Second() == 0) && (hora.Hour() <= 23 && hora.Minute() == 59 && hora.Second() == 59) {
-			if atualizou {
-				continue
-			}
+		//if (hora.Hour() >= 23 && hora.Minute() == 58 && hora.Second() == 0) && (hora.Hour() <= 23 && hora.Minute() == 59 && hora.Second() == 59) {
 
-			db, err := banco.ConnectToPG()
-			if err != nil {
-				helper.NewLog(2, err.Error())
-			}
-			//defer db.Close()
-			var sprints []sprintModel.Sprint
-			db.Where("STATUS <> ?", "FUTURE").Find(&sprints).Order("id")
-			if len(sprints) > 0 {
-				for _, v := range sprints {
-					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
-					if err != nil {
-						helper.NewLog(2, err.Error())
-					}
-					if jsonJira.Total > 0 {
-						if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
-							helper.NewLog(2, err.Error())
-						}
-					}
-
-				}
-			} else {
-				ind := 0
-				db, err := banco.ConnectToPG()
+		db, err := banco.ConnectToPG()
+		if err != nil {
+			helper.NewLog(2, err.Error())
+		}
+		//defer db.Close()
+		var sprints []sprintModel.Sprint
+		db.Find(&sprints).Order("id")
+		if len(sprints) > 0 {
+			for _, v := range sprints {
+				jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %s", v.ID_JIRA))
 				if err != nil {
 					helper.NewLog(2, err.Error())
 				}
-				//defer db.Close()
-				for {
-					ind = ind + 1
-					fmt.Printf("ind num %d", ind)
-					jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf(" sprint = %d", ind))
-					if err != nil {
-						if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
-							helper.NewLog(2, err.Error())
-						}
-					} else {
-						if jsonJira.Total > 0 {
-							if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
-								helper.NewLog(2, err.Error())
-							}
-						} else {
-							break
-						}
-					}
-				}
-
-			}
-
-			jsonJira, err := buscaDDS.BuscaDDS("sprint in (openSprints())")
-			helper.NewLog(1, "iniciou a busca da sprint aberta")
-			if err != nil {
-				if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
-					helper.NewLog(2, err.Error())
-				}
-			} else {
 				if jsonJira.Total > 0 {
-					helper.NewLog(1, fmt.Sprintf("encontrou %d dds", jsonJira.Total))
 					if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
 						helper.NewLog(2, err.Error())
 					}
 				}
+
 			}
-			atualizou = true
 		} else {
-			atualizou = false
+			ind := 0
+			//defer db.Close()
+			for {
+				ind = ind + 1
+				helper.NewLog(1, fmt.Sprintf("IND NUM %d", ind))
+				time.Sleep(time.Second * 15)
+				jsonJira, err := buscaDDS.BuscaDDS(fmt.Sprintf("project = \"Desenvolvimento de Software\" AND sprint in (%d) ", ind))
+				if err != nil {
+					if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
+						helper.NewLog(2, err.Error())
+					}
+				} else {
+					if jsonJira.Total > 0 {
+						if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+							helper.NewLog(2, err.Error())
+						}
+					} else {
+						break
+					}
+				}
+			}
+
 		}
-		time.Sleep(time.Minute)
+
+		jsonJira, err := buscaDDS.BuscaDDS("project = \"Desenvolvimento de Software\" AND sprint in (openSprints())")
+		helper.NewLog(1, "iniciou a busca da sprint aberta")
+		if err != nil {
+			if !strings.Contains(err.Error(), "does not exist or you do not have permission to view it.") {
+				helper.NewLog(2, err.Error())
+			}
+		} else {
+			if jsonJira.Total > 0 {
+				helper.NewLog(1, fmt.Sprintf("encontrou %d dds", jsonJira.Total))
+				if _, err := ddsservice.SalvaDDS(db, jsonJira); err != nil {
+					helper.NewLog(2, err.Error())
+				}
+			}
+		}
+		//		}
 	}
 }

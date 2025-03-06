@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	helper "github.com/danielsilveiradevbr/helpercripto/pkg"
+	cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
 	"github.com/joho/godotenv"
 )
 
@@ -41,11 +41,12 @@ func Cripto(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(err.Error()))
 		return
 	}
+	println(texto.Text)
 	var textoRetorno string
 	if texto.Action == "E" {
-		textoRetorno = helper.Cripto("E", texto.Text, key)
+		textoRetorno = cripto.Cripto("E", texto.Text, key)
 	} else {
-		textoRetorno = helper.Cripto("D", texto.Text, key)
+		textoRetorno = cripto.Cripto("D", texto.Text, key)
 	}
 
 	w.WriteHeader(http.StatusOK)

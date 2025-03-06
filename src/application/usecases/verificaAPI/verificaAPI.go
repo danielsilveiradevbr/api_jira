@@ -11,7 +11,7 @@ import (
 
 	helper "github.com/danielsilveiradevbr/api_jira/src/helpers"
 	telegram "github.com/danielsilveiradevbr/api_jira/src/infra/mensagem"
-	cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
+	//cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
 )
 
 func VerificaAPI() {
@@ -63,8 +63,8 @@ func VerificaAPI() {
 }
 
 func EnviaNotificacao(prMensagem string) {
-	users := strings.Split(cripto.Cripto("D", os.Getenv("USERS_ENVIO_MSG_TELEGRAM_EM_DEV"), os.Getenv("KEY")), "|")
-	telegramBotToken := cripto.Cripto("D", os.Getenv("TELEGRAM_BOT"), os.Getenv("KEY"))
+	users := strings.Split(os.Getenv("USERS_ENVIO_MSG_TELEGRAM_EM_DEV"), "|") //cripto.Cripto("D", os.Getenv("USERS_ENVIO_MSG_TELEGRAM_EM_DEV"), os.Getenv("KEY")), "|")
+	telegramBotToken := os.Getenv("TELEGRAM_BOT")                             //cripto.Cripto("D", os.Getenv("TELEGRAM_BOT"), os.Getenv("KEY"))
 	for _, user := range users {
 		err := telegram.SendMessage(telegramBotToken, user, prMensagem)
 		if err != nil {

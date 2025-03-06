@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
+	//cripto "github.com/danielsilveiradevbr/helpercripto/pkg"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -26,11 +26,11 @@ func ConnectToPG() (*gorm.DB, error) {
 	}
 
 	paramConexao := paramConexao{
-		host:     cripto.Cripto("D", os.Getenv("HOST"), os.Getenv("KEY")),
+		host:     os.Getenv("HOST"), //cripto.Cripto("D", os.Getenv("HOST"), os.Getenv("KEY")),
 		porta:    os.Getenv("PORTA"),
-		username: cripto.Cripto("D", os.Getenv("USERPOST"), os.Getenv("KEY")),
-		password: cripto.Cripto("D", os.Getenv("PASSWORD"), os.Getenv("KEY")),
-		base:     cripto.Cripto("D", os.Getenv("BASE"), os.Getenv("KEY")),
+		username: os.Getenv("USERPOST"), //cripto.Cripto("D", os.Getenv("USERPOST"), os.Getenv("KEY")),
+		password: os.Getenv("PASSWORD"), //cripto.Cripto("D", os.Getenv("PASSWORD"), os.Getenv("KEY")),
+		base:     os.Getenv("BASE"),     //cripto.Cripto("D", os.Getenv("BASE"), os.Getenv("KEY")),
 	}
 	porta, err := strconv.Atoi(paramConexao.porta)
 	if err != nil {
